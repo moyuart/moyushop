@@ -1,4 +1,4 @@
-// 店铺配置（标题、QQ、公告、优惠规则、赠品池 —— 均可在本地后台编辑导出）
+// 店铺配置（本地后台导出 2026/11/23 14:42:37）
 window.SITE = {
  "shopName": "墨鱼爱炖肉",
  "slogan": "二次元高清图包 · 同人插画素材",
@@ -54,7 +54,7 @@ window.SITE = {
   ],
   "gift": {
    "enabled": true,
-   "threshold": 100,
+   "threshold": 50,
    "pool": [
     {
      "id": "g1",
