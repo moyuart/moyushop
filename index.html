@@ -215,10 +215,14 @@
   </div>
 </div>
 
-<!-- 灯箱 -->
+<!-- 灯箱：支持左右切换、手势滑动、页码 -->
 <div class="lightbox" id="lightbox" hidden>
   <button class="lb-close" onclick="closeLightbox()" aria-label="关闭"><svg class="ic"><use href="#i-close"/></svg></button>
+  <button class="lb-nav lb-prev" id="lbPrev" onclick="lbStep(-1)" aria-label="上一张"><svg class="ic"><use href="#i-back"/></svg></button>
   <img id="lbImg" alt="大图">
+  <button class="lb-nav lb-next" id="lbNext" onclick="lbStep(1)" aria-label="下一张"><svg class="ic"><use href="#i-back"/></svg></button>
+  <div class="lb-counter" id="lbCounter" hidden></div>
+  <div class="lb-hint" id="lbHint" hidden>左右滑动切换 · 下滑关闭</div>
 </div>
 
 <div class="toast" id="toast" hidden></div>
