@@ -247,8 +247,9 @@ function showDetail(id){
       <button class="btn-back" onclick="goBack()"><svg class="ic"><use href="#i-back"/></svg> 返回商品列表</button>
       <div class="detail-top">
         <div class="gallery-card">
-          <div class="gallery-main" onclick="openLightbox(currentGalleryUrl())">
+          <div class="gallery-main" id="galleryMainBox" onclick="onGalleryTap(event)">
             <img id="galleryMain" src="${imgUrl(imgs[0])}" alt="${esc(p.title)}" onerror="imgErr(this)">
+            ${imgs.length>1?`<div class="gallery-dots" id="galleryDots">${imgs.map((_,i)=>`<span class="gd-dot${i===0?' active':''}"></span>`).join('')}</div><div class="gallery-swipe-hint">← 左右滑动看更多 →</div>`:''}
           </div>
           <div class="gallery-preview-tip" id="galleryPreviewTip" hidden>
             <span id="galleryPreviewName"></span>
@@ -293,6 +294,7 @@ function showDetail(id){
     <div class="detail-actionbar" id="actionBar">
       <span class="dab-price num">¥${p.price}起</span>
       <button class="btn-fav" id="favBtnM" onclick="favCurrent()"><svg class="ic"><use href="#i-star"/></svg></button>
+      <button class="btn-giftbar" id="giftBtnM" hidden onclick="openGift()">🎁 选赠品</button>
       <button class="btn-gen" id="genBtnM" disabled onclick="genPoster()">生成咨询图</button>
     </div>
   `;
@@ -303,13 +305,53 @@ function showDetail(id){
 function setGallery(i){
   const p=PRODUCTS.find(x=>x.id===state.detailId); if(!p) return;
   const imgs=p.images.length?p.images:[p.cover.replace('/thumb/','/full/')];
-  state.galleryIdx=i;
-  state.galleryFromSpec=-1; // 点商品缩略图即退出规格图预览
+  state.galleryIdx=(i+imgs.length)%imgs.length;
+  state.galleryFromSpec=-1; // 切商品图即退出规格图预览
   const tip=document.getElementById('galleryPreviewTip'); if(tip)tip.hidden=true;
   document.querySelectorAll('.spec-item').forEach(el=>el.classList.remove('spec-preview'));
-  const m=document.getElementById('galleryMain'); if(m){ m.src=imgUrl(imgs[i]); m.onerror=function(){ const fb=imgFallback(this.src); if(fb){this.onerror=null;this.src=fb;} }; }
-  document.querySelectorAll('.gallery-thumbs img').forEach((el,j)=>el.classList.toggle('active',j===i));
+  const m=document.getElementById('galleryMain'); if(m){ m.src=imgUrl(imgs[state.galleryIdx]); m.dataset.imgFb=''; m.onerror=function(){ const fb=imgFallback(this.src); if(fb){this.onerror=null;this.src=fb;} }; }
+  document.querySelectorAll('.gallery-thumbs img').forEach((el,j)=>el.classList.toggle('active',j===state.galleryIdx));
+  document.querySelectorAll('#galleryDots .gd-dot').forEach((el,j)=>el.classList.toggle('active',j===state.galleryIdx));
 }
+/* 点主图打开灯箱；正在预览规格图时优先展示规格图；滑动后不误触发 */
+function onGalleryTap(e){
+  const box=document.getElementById('galleryMainBox');
+  if(box && box.dataset.swiped==='1') return;
+  openLightbox(currentGalleryUrlAsList(), state.galleryFromSpec>=0?0:state.galleryIdx);
+}
+/* 返回灯箱展示用的图片数组：规格预览态用规格图全量数组，正常态用商品主图数组 */
+function currentGalleryUrlAsList(){
+  const p=PRODUCTS.find(x=>x.id===state.detailId); if(!p) return [];
+  if(state.galleryFromSpec>=0){
+    const withImg=p.specs.map((sp,idx)=>({sp,idx})).filter(o=>specShowImg(o.sp,p));
+    return withImg.map(o=>o.sp.img);
+  }
+  return p.images.length?p.images:[p.cover.replace('/thumb/','/full/')];
+}
+/* 主图左右滑动：手势切图，轻点仍打开灯箱 */
+(function bindGallerySwipe(){
+  let sx=0, sy=0, moved=false, boundId=null;
+  document.addEventListener('touchstart',e=>{
+    const box=e.target.closest && e.target.closest('#galleryMainBox');
+    if(!box) return;
+    if(e.touches.length!==1) return;
+    sx=e.touches[0].clientX; sy=e.touches[0].clientY; moved=false; boundId=box;
+  },{passive:true});
+  document.addEventListener('touchmove',e=>{
+    if(!boundId||e.touches.length!==1) return;
+    const dx=Math.abs(e.touches[0].clientX-sx), dy=Math.abs(e.touches[0].clientY-sy);
+    if(dx>16&&dx>dy) moved=true;
+  },{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(!boundId) return;
+    const box=boundId; boundId=null;
+    if(moved&&e.changedTouches.length){
+      const dx=e.changedTouches[0].clientX-sx;
+      box.dataset.swiped='1'; setTimeout(()=>{try{delete box.dataset.swiped;}catch(_){box.dataset.swiped='';}},350);
+      if(Math.abs(dx)>40) setGallery(state.galleryIdx+(dx<0?1:-1));
+    }
+  },{passive:true});
+})();
 /* 当前大图对应的原始 URL（点大图看全屏时用；正在预览规格图则取规格图） */
 function currentGalleryUrl(){
   const p=PRODUCTS.find(x=>x.id===state.detailId); if(!p) return '';
@@ -317,19 +359,25 @@ function currentGalleryUrl(){
   const imgs=p.images.length?p.images:[p.cover.replace('/thumb/','/full/')];
   return imgs[state.galleryIdx]||imgs[0]||'';
 }
-/* 点右侧规格图：左侧大图切到该规格图，并顺手选中该规格 */
+/* 点规格图：打开全屏大图（含该商品所有规格图，可左右滑动对比），并顺手选中该规格+左侧联动 */
 function previewSpecImg(e,i){
   if(e){ e.stopPropagation(); e.preventDefault(); }
   const p=PRODUCTS.find(x=>x.id===state.detailId); if(!p) return;
   const s=p.specs[i]; if(!s||!s.img) return;
+  // 左侧大图联动 + 选中（桌面端实时可见）
   state.galleryFromSpec=i;
   const m=document.getElementById('galleryMain');
-  if(m){ m.src=imgUrl(s.img); m.onerror=function(){ const fb=imgFallback(this.src); if(fb){this.onerror=null;this.src=fb;} }; }
+  if(m){ m.src=imgUrl(s.img); m.dataset.imgFb=''; m.onerror=function(){ const fb=imgFallback(this.src); if(fb){this.onerror=null;this.src=fb;} }; }
   document.querySelectorAll('.gallery-thumbs img').forEach(el=>el.classList.remove('active'));
   document.querySelectorAll('.spec-item').forEach((el,j)=>el.classList.toggle('spec-preview',j===i));
   const tip=document.getElementById('galleryPreviewTip');
   if(tip){ tip.hidden=false; const n=document.getElementById('galleryPreviewName'); if(n)n.textContent='正在看：'+String(s.name||('规格'+(i+1))).slice(0,42); }
   toggleSpec(i,true); // 点图即选中，与点规格卡行为一致
+  // 打开全屏灯箱：把所有有图的规格组成数组，从当前这张开始，可左右滑动对比
+  const withImg=p.specs.map((sp,idx)=>({sp,idx})).filter(o=>specShowImg(o.sp,p));
+  const imgs=withImg.map(o=>o.sp.img);
+  const start=withImg.findIndex(o=>o.idx===i);
+  openLightbox(imgs.length?imgs:[s.img], start<0?0:start);
 }
 function clearSpecPreview(e){
   if(e){ e.stopPropagation(); e.preventDefault(); }
@@ -344,7 +392,21 @@ function toggleSpec(i, force){
   if(sel){ const arr=[...state.selectedSpecs]; sel.textContent=arr.length?`已选 ${arr.length} 个：${arr.map(j=>p.specs[j].name.slice(0,12)).join('、')}`:''; }
   const dis=state.selectedSpecs.size===0;
   ['genBtn','genBtnM'].forEach(id=>{ const b=document.getElementById(id); if(b)b.disabled=dis; });
+  updatePriceDisplay();
   renderPromoStrip();
+}
+/* 价格随规格联动：未选显示起价；选中后显示应付合计（含优惠），与咨询图金额一致 */
+function updatePriceDisplay(){
+  const p=PRODUCTS.find(x=>x.id===state.detailId); if(!p) return;
+  const n=state.selectedSpecs.size;
+  const r=n?currentOrder():null;
+  const label = n===0
+    ? `<small>¥</small>${p.price}<small> 起</small>`
+    : (n===1
+        ? `<small>¥</small>${r.payableYuan}`
+        : `<small>¥</small>${r.payableYuan}<small> 合计·${n}件</small>`);
+  const dp=document.querySelector('.d-price'); if(dp) dp.innerHTML=label;
+  const ab=document.querySelector('.dab-price'); if(ab) ab.innerHTML=(n===0?`¥${p.price}起`:`¥${r.payableYuan}${n>1?'·'+n+'件':''}`);
 }
 function toggleSpecExpand(){
   const list=document.getElementById('specList'); if(!list)return;
@@ -378,8 +440,16 @@ function selectedItems(){
 function currentOrder(){ return CALC.calcOrder(selectedItems(), SITE.promo||{}, state.giftId); }
 function renderPromoStrip(){
   const box=document.getElementById('promoStrip'); if(!box) return;
-  const items=selectedItems(); if(!items.length){ box.hidden=true; return; }
+  const giftBtn=document.getElementById('giftBtnM');
+  const items=selectedItems();
+  if(!items.length){ box.hidden=true; if(giftBtn)giftBtn.hidden=true; return; }
   const r=currentOrder();
+  // 底部操作条醒目赠品入口：达标才亮起，选中后改文案
+  if(giftBtn){
+    giftBtn.hidden=!r.giftEligible;
+    if(r.giftEligible) giftBtn.textContent=state.giftId?'🎁 赠品已选✓':'🎁 选赠品';
+    giftBtn.classList.toggle('picked',!!state.giftId);
+  }
   let html='<div class="ps-title"><svg class="ic"><use href="#i-gift"/></svg> 优惠自动算好了</div>';
   html+=`<div class="calc-line"><span class="cl-label">商品小计（${r.qty}件）</span><span class="cl-val num">¥${r.subtotalYuan}</span></div>`;
   if(r.appliedDiscount){
@@ -418,9 +488,10 @@ function openGiftShow(){
   const th=(SITE.promo&&SITE.promo.gift&&SITE.promo.gift.threshold)||0;
   setText('giftShowRule', `买够 ¥${th}，赠品免费送 1 份（只能挑 1 款）`);
   const list=document.getElementById('giftShowList');
-  if(list) list.innerHTML=pool.map(g=>`
+  const gp=giftPool(); window.__giftImgs=gp.filter(g=>g.img).map(g=>g.img);
+  if(list) list.innerHTML=gp.map(g=>`
     <div class="giftshow-item${Number(g.qty)<=0?' out':''}">
-      <div class="gs-img"><img src="${imgUrl(g.img||'')}" alt="" onerror="imgErr(this)"></div>
+      <div class="gs-img" onclick="openGiftImage('${esc(g.id)}')"><img src="${imgUrl(g.img||'')}" alt="" onerror="imgErr(this)"></div>
       <div class="gs-name">${esc(g.name)}</div>
       <div class="gs-qty">${Number(g.qty)>0?'剩 '+g.qty+' 份':'已送完'}</div>
     </div>
@@ -433,9 +504,10 @@ function openGift(){
   const r=currentOrder(); if(!r.giftEligible){ toast('还没达到赠品门槛哦'); return; }
   const pool=(SITE.promo&&SITE.promo.gift&&SITE.promo.gift.pool)||[];
   const list=document.getElementById('giftList');
+  window.__giftImgs=pool.filter(g=>g.img).map(g=>g.img);
   list.innerHTML=pool.map(g=>`
     <div class="gift-item${String(state.giftId)===String(g.id)?' sel':''}${Number(g.qty)<=0?' out':''}" onclick="${Number(g.qty)>0?`pickGift('${g.id}')`:''}">
-      <img src="${imgUrl(g.img||'')}" alt="" onerror="imgErr(this)">
+      <img class="gift-thumb" src="${imgUrl(g.img||'')}" alt="" onerror="imgErr(this)" onclick="openGiftImage('${esc(g.id)}')">
       <span class="gi-name">${esc(g.name)}</span>
       <span class="gi-qty">${Number(g.qty)>0?'剩 '+g.qty:'已送完'}</span>
     </div>
@@ -445,6 +517,14 @@ function openGift(){
 }
 function pickGift(id){ state.giftId=id; openGift(); }
 function confirmGift(){ closeModal('giftModal'); renderPromoStrip(); toast('赠品已选好'); }
+/* 赠品图看大图：按id在图片数组里定位，可左右滑动对比所有赠品 */
+function openGiftImage(id){
+  const pool=giftPool();
+  const imgs=pool.filter(g=>g.img).map(g=>g.img);
+  const idx=pool.filter(g=>g.img).findIndex(g=>String(g.id)===String(id));
+  closeModal('giftModal'); closeModal('giftShowModal');
+  openLightbox(imgs, idx<0?0:idx);
+}
 
 function favCurrent(){
   const p=PRODUCTS.find(x=>x.id===state.detailId); if(!p) return;
@@ -579,8 +659,8 @@ async function genPoster(){
 }
 
 /* ---------- 收藏长图（分页） ---------- */
-async function drawLongPoster(items, pageNo, totalPage){
-  const W=720,pad=30,headerH=130,itemH=190,footH=210;
+async function drawLongPoster(items, pageNo, totalPage, order, totalCount){
+  const W=720,pad=30,headerH=130,itemH=190,footH=300;
   const H=headerH+items.length*itemH+footH;
   const c=document.createElement('canvas'); c.width=W;c.height=H;
   const ctx=c.getContext('2d');
@@ -603,8 +683,15 @@ async function drawLongPoster(items, pageNo, totalPage){
   const by=H-footH+14;
   ctx.fillStyle='#fff';roundRect(ctx,pad-6,by,W-2*pad+12,footH-20,14);ctx.fill();
   ctx.fillStyle='#26233A';ctx.font='bold 24px sans-serif';ctx.fillText('把这几张图发QQ给店主，说"图里这些我都要"',pad,by+38);
-  ctx.fillStyle='#5B4BC4';ctx.font='bold 32px sans-serif';ctx.fillText('QQ：'+(SITE.qq||'3998694209'),pad,by+84);
-  if(SITE.qr){ await tryDrawImg(ctx,SITE.qr,W-pad-150,by+6,150,150,false); }
+  // 真实金额明细（每页同一份合计）
+  if(order){
+    ctx.fillStyle='#7C7791';ctx.font='21px sans-serif';
+    ctx.fillText('共 '+(totalCount||items.length)+' 件 · 商品小计 ¥'+order.subtotalYuan+(order.appliedDiscount?' · '+order.appliedDiscount.label+' -¥'+order.discountYuan:''),pad,by+80);
+    ctx.fillStyle='#E23E58';ctx.font='bold 40px sans-serif';
+    ctx.fillText('应付总价 ¥'+order.payableYuan+(order.giftEligible?'（已达满赠，可任选1份赠品）':''),pad,by+132);
+  }
+  ctx.fillStyle='#5B4BC4';ctx.font='bold 32px sans-serif';ctx.fillText('QQ：'+(SITE.qq||'3998694209'),pad,by+186);
+  if(SITE.qr){ await tryDrawImg(ctx,SITE.qr,W-pad-150,by+30,150,150,false); }
   return c.toDataURL('image/png');
 }
 
@@ -670,9 +757,11 @@ async function genLongPoster(){
   const sel=FAVS.filter(f=>favSelected.has(f.key));if(!sel.length){toast('先勾选想咨询的款式');return;}
   toast('正在生成长图…');
   try{
+    // 用Calc按勾选的收藏项算真实金额（含优惠/门槛），每页标同一份，避免只发一页时对不上
+    const order=CALC.calcOrder(sel.map(f=>({price:f.price,qty:1})), SITE.promo||{}, null);
     const PER=6,pages=Math.ceil(sel.length/PER);
     posterPages=[];
-    for(let i=0;i<pages;i++) posterPages.push(await drawLongPoster(sel.slice(i*PER,(i+1)*PER),i+1,pages));
+    for(let i=0;i<pages;i++) posterPages.push(await drawLongPoster(sel.slice(i*PER,(i+1)*PER),i+1,pages,order,sel.length));
     posterIdx=0;showPoster();
   }catch(e){console.error(e);toast('长图生成失败，请重试');}
 }
@@ -747,8 +836,48 @@ function savePoster(){
   document.body.appendChild(a);a.click();document.body.removeChild(a);
   toast('已下载（手机请长按图片存相册）');
 }
-function openLightbox(src){ const l=document.getElementById('lightbox');if(l)l.hidden=false;const i=document.getElementById('lbImg');if(i){ i.src=imgUrl(src); i.onerror=function(){ const fb=imgFallback(this.src); if(fb){this.onerror=null;this.src=fb;} }; } }
-function closeLightbox(){ const l=document.getElementById('lightbox');if(l)l.hidden=true; }
+/* ---------- 全屏灯箱：图片数组 + 索引，支持左右切换/手势/键盘 ---------- */
+let lbList=[], lbIdx=0;
+function openLightbox(list, startIdx){
+  const src = Array.isArray(list) ? list : [list];
+  lbList = src.filter(Boolean);
+  if(!lbList.length) return;
+  lbIdx = Math.max(0, Math.min(lbList.length-1, startIdx||0));
+  const l=document.getElementById('lightbox'); if(l) l.hidden=false;
+  document.body.style.overflow='hidden';
+  renderLightbox();
+}
+function renderLightbox(){
+  const i=document.getElementById('lbImg');
+  if(i && lbList[lbIdx]){
+    i.src=imgUrl(lbList[lbIdx]); i.dataset.imgFb='';
+    i.onerror=function(){ const fb=imgFallback(this.src); if(fb){this.onerror=null;this.src=fb;} };
+  }
+  const multi=lbList.length>1;
+  const c=document.getElementById('lbCounter');
+  if(c){ c.hidden=!multi; if(multi) c.textContent=(lbIdx+1)+' / '+lbList.length; }
+  const hint=document.getElementById('lbHint'); if(hint) hint.hidden=!multi;
+  const prev=document.getElementById('lbPrev'), next=document.getElementById('lbNext');
+  if(prev) prev.style.display=multi?'flex':'none';
+  if(next) next.style.display=multi?'flex':'none';
+}
+function lbStep(d){ if(lbList.length<2) return; lbIdx=(lbIdx+d+lbList.length)%lbList.length; renderLightbox(); }
+function closeLightbox(){ const l=document.getElementById('lightbox');if(l)l.hidden=true; document.body.style.overflow=''; }
+/* 手势：左右滑切换、下滑关闭；绑定到灯箱容器，图片本身不拦截 */
+(function bindLightboxGesture(){
+  let sx=0, sy=0, moved=false;
+  const el=document.getElementById('lightbox');
+  if(!el) return;
+  el.addEventListener('touchstart',e=>{ if(e.touches.length!==1)return; sx=e.touches[0].clientX; sy=e.touches[0].clientY; moved=false; },{passive:true});
+  el.addEventListener('touchmove',e=>{ if(e.touches.length!==1)return; const dx=Math.abs(e.touches[0].clientX-sx), dy=Math.abs(e.touches[0].clientY-sy); if(dx>18||dy>18)moved=true; },{passive:true});
+  el.addEventListener('touchend',e=>{
+    if(moved && e.changedTouches.length){
+      const dx=e.changedTouches[0].clientX-sx, dy=e.changedTouches[0].clientY-sy;
+      if(Math.abs(dy)>90 && Math.abs(dy)>Math.abs(dx)) closeLightbox();
+      else if(Math.abs(dx)>45 && Math.abs(dx)>Math.abs(dy)) lbStep(dx<0?1:-1);
+    }
+  },{passive:true});
+})();
 let toastTimer=null;
 function toast(msg){
   const el=document.getElementById('toast');if(!el)return;
@@ -766,8 +895,13 @@ function imgErr(el){
 }
 
 document.addEventListener('keydown',e=>{
+  const lb=document.getElementById('lightbox');
+  if(lb && !lb.hidden){
+    if(e.key==='Escape'){ closeLightbox(); return; }
+    if(e.key==='ArrowLeft'){ e.preventDefault(); lbStep(-1); return; }
+    if(e.key==='ArrowRight'){ e.preventDefault(); lbStep(1); return; }
+  }
   if(e.key==='Escape'){
-    if(!document.getElementById('lightbox').hidden)closeLightbox();
     ['qqModal','unzipModal','posterModal','giftModal','catGuideModal','giftShowModal'].forEach(id=>{const el=document.getElementById(id);if(el&&!el.hidden)closeModal(id);});
   }
 });
