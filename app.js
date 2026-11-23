@@ -111,15 +111,10 @@ function getFiltered(){
   }
   return list;
 }
-function renderGrid(reset){
-  if(reset) visibleCount=40;
-  const list=getFiltered();
-  setText('resultCount', `共 ${list.length} 件商品`);
-  const grid=document.getElementById('productGrid');
-  const es=document.getElementById('emptyState'); if(es) es.hidden=list.length>0;
-  const shown=list.slice(0,visibleCount);
-  grid.innerHTML=shown.map((p,i)=>`
-    <div class="p-card" style="animation-delay:${Math.min(i*35,350)}ms" onclick="openDetail(${p.id})">
+function cardHtml(p,i,delayIdx){
+  const d=(delayIdx==null?i:delayIdx);
+  return `
+    <div class="p-card" style="animation-delay:${Math.min(d*35,350)}ms" onclick="openDetail(${p.id})">
       <div class="p-cover">
         <img src="${imgUrl(p.cover)}" alt="${esc(p.title)}" ${i<12?'loading="eager" fetchpriority="high"':'loading="lazy"'} onerror="imgErr(this)">
         ${p.isNew?'<span class="p-new">新品</span>':''}
@@ -133,7 +128,16 @@ function renderGrid(reset){
         </div>
       </div>
     </div>
-  `).join('');
+  `;
+}
+function renderGrid(reset){
+  if(reset) visibleCount=40;
+  const list=getFiltered();
+  setText('resultCount', `共 ${list.length} 件商品`);
+  const grid=document.getElementById('productGrid');
+  const es=document.getElementById('emptyState'); if(es) es.hidden=list.length>0;
+  const shown=list.slice(0,visibleCount);
+  grid.innerHTML=shown.map((p,i)=>cardHtml(p,i)).join('');
   renderLoadMore(list.length);
 }
 function renderLoadMore(total){
@@ -141,10 +145,24 @@ function renderLoadMore(total){
   if(visibleCount<total){ el.hidden=false; const b=document.getElementById('loadMoreBtn'); if(b) b.textContent=`加载更多（还有 ${total-visibleCount} 件）`; }
   else el.hidden=true;
 }
+let isLoadingMore=false;
 function loadMore(){
   const total=getFiltered().length;
-  if(visibleCount>=total) return;
-  visibleCount+=40; renderGrid(false);
+  if(isLoadingMore || visibleCount>=total) return;
+  isLoadingMore=true;
+  const list=getFiltered();
+  const from=visibleCount;
+  visibleCount=Math.min(visibleCount+40,total);
+  // 只追加新增卡片，已有卡片 DOM 不动 → 不重播入场动画、图片不重新解码，触底无白屏
+  const grid=document.getElementById('productGrid');
+  if(grid){
+    const frag=document.createElement('div');
+    frag.innerHTML=list.slice(from,visibleCount).map((p,i)=>cardHtml(p,from+i,i)).join('');
+    while(frag.firstChild) grid.appendChild(frag.firstChild);
+  }
+  renderLoadMore(total);
+  // 等新卡片布局稳定后再允许下一次加载，避免 rootMargin 连续触发造成跳动
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{ isLoadingMore=false; }));
 }
 let scrollObserver=null;
 function setupInfiniteScroll(){
