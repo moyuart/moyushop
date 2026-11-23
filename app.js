@@ -4,7 +4,7 @@
 const SITE = window.SITE || {};
 const PRODUCTS = window.PRODUCTS || [];
 const CALC = window.Calc;
-let state = { cat:'全部', search:'', sort:'default', detailId:null, selectedSpecs:new Set(), galleryIdx:0, giftId:null };
+let state = { cat:'全部', search:'', sort:'default', detailId:null, selectedSpecs:new Set(), galleryIdx:0, giftId:null, specSearch:'', specFoldAt:6 };
 let FAVS = loadFavs();
 let posterPages = [], posterIdx = 0;
 let unzipKind = 'pc';
@@ -99,6 +99,16 @@ function getFiltered(){
   if(state.sort==='priceAsc') list.sort((a,b)=>a.price-b.price);
   else if(state.sort==='priceDesc') list.sort((a,b)=>b.price-a.price);
   else if(state.sort==='newest') list.sort((a,b)=>b.id-a.id);
+  else {
+    // 默认排序：新品优先 → 规格多优先 → id 大优先
+    list.sort((a,b)=>{
+      const na=a.isNew?1:0, nb=b.isNew?1:0;
+      if(na!==nb) return nb-na;
+      const sa=(a.specs&&a.specs.length)||0, sb=(b.specs&&b.specs.length)||0;
+      if(sa!==sb) return sb-sa;
+      return (b.id||0)-(a.id||0);
+    });
+  }
   return list;
 }
 function renderGrid(reset){
@@ -112,7 +122,7 @@ function renderGrid(reset){
     <div class="p-card" style="animation-delay:${Math.min(i*35,350)}ms" onclick="openDetail(${p.id})">
       <div class="p-cover">
         <img src="${imgUrl(p.cover)}" alt="${esc(p.title)}" ${i<12?'loading="eager" fetchpriority="high"':'loading="lazy"'} onerror="imgErr(this)">
-        ${p.isNew?'<span class="p-new">NEW</span>':''}
+        ${p.isNew?'<span class="p-new">新品</span>':''}
         <span class="p-cat">${p.cat}</span>
       </div>
       <div class="p-body">
@@ -182,21 +192,34 @@ function showDetail(id){
 
   // 规格图跟随全店+产品两级开关：开且该规格有图=显示图，关=纯文字（不填主图、无角标）
   const SPEC_FOLD_AT=6;
-  state.specExpanded=false;
+  state.specExpanded=false; state.specSearch='';
+  // 规格说明条：按商品分类取 SITE.specTip 文案，买家一眼看懂【数字+数字】含义
+  const tipMap=SITE.specTip||{};
+  const catTip=tipMap[p.cat]||'';
+  const commonTip=tipMap._common||'';
+  const specTipBar=(catTip||commonTip)?`<div class="spec-tipbar">
+    <svg class="ic"><use href="#i-info"/></svg>
+    <div class="stb-body">${catTip?`<div>${esc(catTip)}</div>`:''}${commonTip?`<div class="stb-common">${esc(commonTip)}</div>`:''}</div>
+  </div>`:'';
   const specHtml=p.specs.map((s,i)=>{
     const withImg=specShowImg(s,p);
     const pic=withImg?`<div class="si-pic"><img class="si-img" src="${imgUrl(s.img)}" alt="" loading="lazy" onerror="imgErr(this)"></div>`:'';
     const folded=i>=SPEC_FOLD_AT?' spec-fold':'';
+    const newTag=s.isNew?'<span class="si-new">新品</span>':'';
     return `
-    <div class="spec-item${withImg?'':' spec-text'}${folded}" id="spec-${i}" onclick="toggleSpec(${i})">
+    <div class="spec-item${withImg?'':' spec-text'}${folded}" id="spec-${i}" data-specname="${esc(s.name).toLowerCase()}" onclick="toggleSpec(${i})">
       <span class="si-check"><svg class="ic"><use href="#i-check"/></svg></span>
       ${pic}
       <div class="si-name">${esc(s.name)}</div>
+      ${newTag}
       <div class="si-price num">¥${s.price}</div>
     </div>`;
   }).join('');
   const foldable=p.specs.length>SPEC_FOLD_AT;
   const foldBtn=foldable?`<button class="spec-expand" id="specExpand" onclick="toggleSpecExpand()">展开全部 ${p.specs.length} 个规格 <span>⌄</span></button>`:'';
+  // 规格数很多（>20）时给搜索框，快速按名字找款
+  const searchBox=p.specs.length>20?`<div class="spec-search"><input type="search" id="specSearchInput" placeholder="搜规格名/角色，快速找款" oninput="filterSpecs(this.value)" autocomplete="off"></div>`:'';
+  const noMatch='<div class="spec-nomatch" id="specNoMatch" hidden>没找到匹配的规格，换个词试试～</div>';
 
   v.innerHTML=`
     <div class="detail-wrap">
@@ -218,7 +241,10 @@ function showDetail(id){
           <div class="promo-strip" id="promoStrip" hidden></div>
           <div class="spec-head"><h3>想选哪个款？</h3></div>
           <div class="spec-tip">看中哪个点哪个，可以多选，选好后点「生成咨询图」发给店主就行～</div>
+          ${specTipBar}
+          ${searchBox}
           <div class="spec-list" id="specList">${specHtml}</div>
+          ${noMatch}
           ${foldBtn}
           <div class="picked-line" id="pickedLine"></div>
           <div class="d-actions">
@@ -273,6 +299,22 @@ function toggleSpecExpand(){
   list.classList.toggle('expanded',state.specExpanded);
   const btn=document.getElementById('specExpand');
   if(btn)btn.innerHTML=state.specExpanded?'收起规格 <span>⌃</span>':`展开全部 ${PRODUCTS.find(x=>x.id===state.detailId)?.specs.length||''} 个规格 <span>⌄</span>`;
+}
+/* 规格搜索：按名字过滤显示，搜索时自动展开全部，不改动已选中的规格 */
+function filterSpecs(v){
+  state.specSearch=(v||'').trim().toLowerCase();
+  const list=document.getElementById('specList'); if(!list)return;
+  let shown=0;
+  list.querySelectorAll('.spec-item').forEach(el=>{
+    const hit=!state.specSearch||(el.getAttribute('data-specname')||'').includes(state.specSearch);
+    el.style.display=hit?'':'none';
+    if(hit)shown++;
+  });
+  // 搜索时强制展开（折叠的必须能搜到）
+  if(state.specSearch){ list.classList.add('expanded'); }
+  else { list.classList.toggle('expanded',state.specExpanded); }
+  const nm=document.getElementById('specNoMatch'); if(nm)nm.hidden=shown>0;
+  const foldBtn=document.getElementById('specExpand'); if(foldBtn)foldBtn.style.display=state.specSearch?'none':'';
 }
 
 /* ---------- 优惠计算与展示 ---------- */
@@ -609,9 +651,10 @@ const CAT_GUIDE_FALLBACK={
 };
 function openCatGuide(){
   const guide=SITE.catGuide||CAT_GUIDE_FALLBACK;
+  const tips=SITE.specTip||{};
   const cats=(SITE.cats||[]).filter(c=>c!=='全部'&&guide[c]);
   const box=document.getElementById('guideList');
-  if(box) box.innerHTML=cats.map(c=>`<div class="guide-item"><span class="gi-badge">${c}</span><span class="gi-desc">${esc(guide[c])}</span></div>`).join('');
+  if(box) box.innerHTML=cats.map(c=>`<div class="guide-item"><span class="gi-badge">${c}</span><span class="gi-desc">${esc(guide[c])}${tips[c]?`<div class="gi-tip">规格数字：${esc(tips[c])}</div>`:''}</span></div>`).join('');
   // 标题里的类别数按实际分类动态生成，不再写死"四种"
   const cnNum=['零','一','两','三','四','五','六','七','八','九','十'];
   const n=cats.length; const label=n<=10?cnNum[n]:String(n);
