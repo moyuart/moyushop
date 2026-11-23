@@ -1,5 +1,5 @@
-// 商品数据（本地后台导出 2026/11/23 14:42:41）
-window.PRODUCTS_VERSION="20261123";
+// 商品数据（本地后台导出 2026/11/23 15:44:58）
+window.PRODUCTS_VERSION="20261123154458";
 window.PRODUCTS = [
  {
   "id": 2,
@@ -5141,14 +5141,14 @@ window.PRODUCTS = [
    {
     "name": "颜色:【793】jinu振宇-猎魔女团",
     "price": 12,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s31.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s30.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【321+14】狐尼克-动物城",
     "price": 10,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s32.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s31.webp",
     "hasImg": true,
     "showImg": true
    }
