@@ -718,7 +718,9 @@ async function drawLongPoster(items, pageNo, totalPage, order, totalCount){
     fitText(ctx,'共 '+(totalCount||items.length)+' 件 · 商品小计 ¥'+order.subtotalYuan+(order.appliedDiscount?' · '+order.appliedDiscount.label+' -¥'+order.discountYuan:''),pad,by+82,textMaxW,20,false,'#7C7791');
     fitText(ctx,'应付总价 ¥'+order.payableYuan,pad,by+134,textMaxW,42,true,'#E23E58');
     if(order.giftEligible){
-      fitText(ctx,'已达满赠 · 可任选 1 份赠品',pad,by+170,textMaxW,19,true,'#C2356B');
+      // 买家已选赠品则显示其真实标题；仅达标未选则提示去选
+      const giftTxt = order.gift ? ('已选赠品：'+order.gift.name) : '已达满赠 · 可任选 1 份赠品';
+      fitText(ctx,giftTxt,pad,by+170,textMaxW,19,true,'#C2356B');
     }
   }
   fitText(ctx,'QQ：'+(SITE.qq||'3998694209'),pad,by+216,textMaxW,34,true,'#5B4BC4');
