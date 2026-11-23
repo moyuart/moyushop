@@ -234,6 +234,17 @@ img{display:block;max-width:100%}
 .spec-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
 .spec-head h3{font-size:15px;font-weight:800}
 .spec-tip{font-size:12px;color:var(--ink-2);margin-bottom:12px}
+/* 规格说明条：按分类解释【数字+数字】含义，小白买家一眼看懂 */
+.spec-tipbar{display:flex;gap:8px;align-items:flex-start;background:#F1F0FC;border:1px solid var(--primary-l);border-radius:10px;padding:9px 11px;margin-bottom:12px;font-size:12px;line-height:1.6;color:var(--ink)}
+.spec-tipbar>.ic{width:15px;height:15px;flex:none;margin-top:2px;color:var(--primary)}
+.spec-tipbar .stb-body>div+div{margin-top:3px}
+.spec-tipbar .stb-common{color:var(--ink-2)}
+.spec-search{margin-bottom:11px}
+.spec-search input{width:100%;padding:9px 12px;border:1.5px solid var(--line-2);border-radius:10px;font-size:12.5px;outline:none;background:var(--surface);color:var(--ink)}
+.spec-search input:focus{border-color:var(--primary)}
+.spec-nomatch{text-align:center;color:var(--ink-3);font-size:12.5px;padding:18px 0}
+/* 新规格角标：新品 */
+.spec-item .si-new{position:absolute;top:6px;left:6px;background:var(--accent);color:#fff;font-size:9.5px;font-weight:800;padding:2px 6px;border-radius:6px;z-index:2;line-height:1.4}
 .spec-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:11px;min-width:0}
 .spec-item{position:relative;border:2px solid var(--line-2);border-radius:14px;padding:10px;background:var(--surface);transition:.18s;cursor:pointer;user-select:none;min-width:0}
 .spec-item:hover{border-color:var(--primary-l);transform:translateY(-2px)}
@@ -348,6 +359,7 @@ img{display:block;max-width:100%}
 .guide-item:nth-child(3) .gi-badge{background:#3E86B8}
 .guide-item:nth-child(4) .gi-badge{background:#C9903F}
 .gi-desc{font-size:13px;line-height:1.55;color:var(--ink)}
+.gi-tip{margin-top:5px;font-size:12px;line-height:1.55;color:var(--ink-2);background:rgba(255,255,255,.6);border-radius:8px;padding:6px 8px}
 .guide-foot{font-size:12px;color:var(--ink-2);line-height:1.6}
 .poster-box{max-width:410px}
 .poster-tip{font-size:13px;color:var(--ink-2);margin:-2px 0 12px}
