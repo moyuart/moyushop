@@ -437,7 +437,16 @@ function selectedItems(){
   const p=PRODUCTS.find(x=>x.id===state.detailId); if(!p) return [];
   return [...state.selectedSpecs].map(i=>({ price:p.specs[i].price, qty:1 }));
 }
-function currentOrder(){ return CALC.calcOrder(selectedItems(), SITE.promo||{}, state.giftId); }
+/* 订单来源：detail=详情页(选中规格) / fav=收藏页(勾选收藏)。
+   currentOrder 按来源取不同商品集合，赠品选择逻辑两处共用。 */
+let orderSource='detail';
+function currentOrder(){
+  let items;
+  if(orderSource==='fav') items=favSelectedItems();
+  else items=selectedItems();
+  return CALC.calcOrder(items, SITE.promo||{}, state.giftId);
+}
+function favSelectedItems(){ return FAVS.filter(f=>favSelected.has(f.key)).map(f=>({price:f.price,qty:1})); }
 function renderPromoStrip(){
   const box=document.getElementById('promoStrip'); if(!box) return;
   const giftBtn=document.getElementById('giftBtnM');
@@ -500,7 +509,8 @@ function openGiftShow(){
 }
 
 /* ---------- 赠品自选 ---------- */
-function openGift(){
+function openGift(from){
+  orderSource = from || (document.getElementById('view-fav') && !document.getElementById('view-fav').hidden ? 'fav' : 'detail');
   const r=currentOrder(); if(!r.giftEligible){ toast('还没达到赠品门槛哦'); return; }
   const pool=(SITE.promo&&SITE.promo.gift&&SITE.promo.gift.pool)||[];
   const list=document.getElementById('giftList');
@@ -515,8 +525,13 @@ function openGift(){
   document.getElementById('giftConfirm').disabled=!state.giftId;
   openModal('giftModal');
 }
-function pickGift(id){ state.giftId=id; openGift(); }
-function confirmGift(){ closeModal('giftModal'); renderPromoStrip(); toast('赠品已选好'); }
+function pickGift(id){ state.giftId=id; openGift(orderSource); }
+function confirmGift(){
+  closeModal('giftModal');
+  if(orderSource==='fav'){ updateFavSettle(); }
+  else { renderPromoStrip(); }
+  toast('赠品已选好');
+}
 /* 赠品图看大图：按id在图片数组里定位，可左右滑动对比所有赠品 */
 function openGiftImage(id){
   const pool=giftPool();
@@ -592,6 +607,18 @@ function wrapText(ctx,text,x,y,maxW,lineH,maxLines){
   if(maxLines&&lines.length>maxLines){ lines=lines.slice(0,maxLines); lines[maxLines-1]=lines[maxLines-1].slice(0,-1)+'…'; }
   lines.forEach((l,i)=>ctx.fillText(l,x,y+i*lineH));
   return lines.length*lineH;
+}
+/* 限宽绘制文字：超出 maxW 时自动缩小字号，保证绝不越界压到二维码/画布外 */
+function fitText(ctx,text,x,y,maxW,fontPx,bold,color){
+  let px=fontPx;
+  do{
+    ctx.font=(bold?'bold ':'')+px+'px sans-serif';
+    if(ctx.measureText(text).width<=maxW) break;
+    px-=1;
+  }while(px>11);
+  if(color)ctx.fillStyle=color;
+  ctx.fillText(text,x,y);
+  return px;
 }
 function roundRect(ctx,x,y,w,h,r){
   ctx.beginPath(); ctx.moveTo(x+r,y);
@@ -682,16 +709,20 @@ async function drawLongPoster(items, pageNo, totalPage, order, totalCount){
   }
   const by=H-footH+14;
   ctx.fillStyle='#fff';roundRect(ctx,pad-6,by,W-2*pad+12,footH-20,14);ctx.fill();
-  ctx.fillStyle='#26233A';ctx.font='bold 24px sans-serif';ctx.fillText('把这几张图发QQ给店主，说"图里这些我都要"',pad,by+38);
-  // 真实金额明细（每页同一份合计）
+  // 左右分栏：左侧文字区固定宽度，右侧留给二维码，两者绝不重叠
+  const qrX=W-pad-150, textMaxW=(qrX-16)-pad; // 文字最多画到二维码左侧再留16px
+  fitText(ctx,'把这几张图发QQ给店主，说"图里这些我都要"',pad,by+40,textMaxW,23,true,'#26233A');
+  // 真实金额明细（每页同一份合计）—— 各行独立、限宽，杜绝大字长串越界
   if(order){
-    ctx.fillStyle='#7C7791';ctx.font='21px sans-serif';
-    ctx.fillText('共 '+(totalCount||items.length)+' 件 · 商品小计 ¥'+order.subtotalYuan+(order.appliedDiscount?' · '+order.appliedDiscount.label+' -¥'+order.discountYuan:''),pad,by+80);
-    ctx.fillStyle='#E23E58';ctx.font='bold 40px sans-serif';
-    ctx.fillText('应付总价 ¥'+order.payableYuan+(order.giftEligible?'（已达满赠，可任选1份赠品）':''),pad,by+132);
+    ctx.fillStyle='#7C7791';ctx.font='20px sans-serif';
+    fitText(ctx,'共 '+(totalCount||items.length)+' 件 · 商品小计 ¥'+order.subtotalYuan+(order.appliedDiscount?' · '+order.appliedDiscount.label+' -¥'+order.discountYuan:''),pad,by+82,textMaxW,20,false,'#7C7791');
+    fitText(ctx,'应付总价 ¥'+order.payableYuan,pad,by+134,textMaxW,42,true,'#E23E58');
+    if(order.giftEligible){
+      fitText(ctx,'已达满赠 · 可任选 1 份赠品',pad,by+170,textMaxW,19,true,'#C2356B');
+    }
   }
-  ctx.fillStyle='#5B4BC4';ctx.font='bold 32px sans-serif';ctx.fillText('QQ：'+(SITE.qq||'3998694209'),pad,by+186);
-  if(SITE.qr){ await tryDrawImg(ctx,SITE.qr,W-pad-150,by+30,150,150,false); }
+  fitText(ctx,'QQ：'+(SITE.qq||'3998694209'),pad,by+216,textMaxW,34,true,'#5B4BC4');
+  if(SITE.qr){ await tryDrawImg(ctx,SITE.qr,qrX,by+30,150,150,false); }
   return c.toDataURL('image/png');
 }
 
@@ -726,14 +757,26 @@ function renderFav(){
   v.innerHTML=`<div class="fav-wrap">
     <button class="btn-back" onclick="goHome()"><svg class="ic"><use href="#i-back"/></svg> 返回商品列表</button>
     <div class="fav-head"><h2>我的收藏（${FAVS.length}）</h2></div>
-    <div class="fav-tip">看中哪些就打勾，点「生成咨询长图」，保存后发 QQ 给店主，一句"图里这些我要"就能聊，省得一个个打字～</div>
+    <div class="fav-tip">看中哪些就打勾，价格和赠品会自动算在下面，点「生成咨询长图」保存后发 QQ 给店主就行～</div>
     <div class="fav-toolbar">
       <label><input type="checkbox" id="favAll" onchange="toggleFavAll(this.checked)"> 全选</label>
       <span class="fav-count" id="favSelCount">已选 ${favSelected.size} 件</span>
-      <button class="btn-gen-long" id="genLongBtn" disabled onclick="genLongPoster()">生成咨询长图</button>
+      <span class="fav-hint-inline">满 ¥50 自动送赠品</span>
     </div>
     <div class="fav-list">${items}</div>
+  </div>
+  <div class="fav-settle" id="favSettle">
+    <div class="fs-price-wrap">
+      <span class="fs-label" id="fsLabel">未选商品</span>
+      <span class="fs-price num" id="fsPrice">¥0</span>
+      <span class="fs-sub" id="fsSub"></span>
+    </div>
+    <div class="fs-actions">
+      <button class="btn-giftbar" id="favGiftBtn" hidden onclick="openGift('fav')">🎁 选赠品</button>
+      <button class="btn-gen-long" id="genLongBtn" disabled onclick="genLongPoster()">生成咨询长图</button>
+    </div>
   </div>`;
+  updateFavSettle();
 }
 function toggleFavSel(key,checked){
   if(checked)favSelected.add(key);else favSelected.delete(key);
@@ -743,8 +786,43 @@ function toggleFavSel(key,checked){
 }
 function updateFavSelUI(){
   const c=document.getElementById('favSelCount');if(c)c.textContent=`已选 ${favSelected.size} 件`;
-  const b=document.getElementById('genLongBtn');if(b)b.disabled=favSelected.size===0;
   const all=document.getElementById('favAll');if(all)all.checked=favSelected.size===FAVS.length;
+  updateFavSettle();
+}
+/* 收藏页底部结算条：选中项真实应付价 + 满赠入口 + 生成按钮 */
+function updateFavSettle(){
+  const items=favSelectedItems();
+  const r=CALC.calcOrder(items, SITE.promo||{}, state.giftId);
+  const label=document.getElementById('fsLabel');
+  const price=document.getElementById('fsPrice');
+  const sub=document.getElementById('fsSub');
+  const giftBtn=document.getElementById('favGiftBtn');
+  const genBtn=document.getElementById('genLongBtn');
+  if(!price) return; // 收藏页未渲染
+  if(!items.length){
+    if(label)label.textContent='未选商品';
+    price.textContent='¥0';
+    if(sub)sub.textContent='勾选款式后自动算总价';
+    if(giftBtn)giftBtn.hidden=true;
+    if(genBtn)genBtn.disabled=true;
+    return;
+  }
+  if(label)label.textContent=`已选 ${r.qty} 件 · 应付`;
+  price.textContent='¥'+r.payableYuan;
+  if(sub){
+    const parts=[];
+    if(r.appliedDiscount) parts.push(r.appliedDiscount.label+' -¥'+r.discountYuan);
+    if(r.giftEligible) parts.push(state.giftId?'🎁 赠品已选':'🎁 已达满赠');
+    sub.textContent=parts.length?parts.join(' · '):`小计 ¥${r.subtotalYuan}`;
+  }
+  if(giftBtn){
+    giftBtn.hidden=!r.giftEligible;
+    if(r.giftEligible){
+      giftBtn.textContent=state.giftId?'🎁 赠品已选✓':'🎁 选赠品';
+      giftBtn.classList.toggle('picked',!!state.giftId);
+    }
+  }
+  if(genBtn)genBtn.disabled=false;
 }
 function toggleFavAll(checked){
   if(checked)FAVS.forEach(f=>favSelected.add(f.key));else favSelected.clear();
@@ -757,8 +835,8 @@ async function genLongPoster(){
   const sel=FAVS.filter(f=>favSelected.has(f.key));if(!sel.length){toast('先勾选想咨询的款式');return;}
   toast('正在生成长图…');
   try{
-    // 用Calc按勾选的收藏项算真实金额（含优惠/门槛），每页标同一份，避免只发一页时对不上
-    const order=CALC.calcOrder(sel.map(f=>({price:f.price,qty:1})), SITE.promo||{}, null);
+    // 用Calc按勾选的收藏项算真实金额（含优惠/门槛/所选赠品），每页标同一份，避免只发一页时对不上
+    const order=CALC.calcOrder(sel.map(f=>({price:f.price,qty:1})), SITE.promo||{}, state.giftId);
     const PER=6,pages=Math.ceil(sel.length/PER);
     posterPages=[];
     for(let i=0;i<pages;i++) posterPages.push(await drawLongPoster(sel.slice(i*PER,(i+1)*PER),i+1,pages,order,sel.length));
