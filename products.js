@@ -1,5 +1,5 @@
-// 商品数据（本地后台导出 2026/11/23 15:44:58）
-window.PRODUCTS_VERSION="20261123160454";
+// 商品数据（本地后台导出 2026/11/23 18:04:37）
+window.PRODUCTS_VERSION="20261123180437";
 window.PRODUCTS = [
  {
   "id": 2,
@@ -1055,7 +1055,7 @@ window.PRODUCTS = [
   "title": "同一画师2D/bl向4k高清高质量动作视频素",
   "detail": "材\n！详细介绍请左滑看图文！写的很清楚！\n拍下默认已看！\n！特别注意：人物都是随机混合的！不支持拍封面某单一人物！不支持拍封面某单一人物！\n！按赞助日期打包便宜出，喜欢这个画风的拍！\n其他类似画师可见主页画师分类下/咨询店主\n！人工发货，时间：早9:00-晚22:30，上班族看到即回，如有回复/发货不及时请谅解orz",
   "price": 15,
-  "cat": "画师包",
+  "cat": "3d动作包",
   "cover": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/thumb/013_m01.webp",
   "images": [
    "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/013_m01.webp",
@@ -2281,7 +2281,12 @@ window.PRODUCTS = [
   "images": [
    "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/035_m01.webp",
    "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/035_m02.webp",
-   "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/035_m03.webp"
+   "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/035_m07.webp",
+   "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/035_m06.webp",
+   "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/035_m08.webp",
+   "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/035_m03.webp",
+   "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/035_m04.webp",
+   "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/035_m05.webp"
   ],
   "specs": [
    {
@@ -2323,77 +2328,77 @@ window.PRODUCTS = [
     "name": "颜色:【470+9】双胞胎弟Okan奥坎",
     "price": 12,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/035_s06.webp",
-    "hasImg": false,
+    "hasImg": true,
     "showImg": false
    },
    {
     "name": "颜色:【413+12】大学生Sota苏打​",
     "price": 12,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/035_s07.webp",
-    "hasImg": false,
+    "hasImg": true,
     "showImg": false
    },
    {
     "name": "颜色:【297+10】失忆男子Lenga伦加",
     "price": 10,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/035_s08.webp",
-    "hasImg": false,
+    "hasImg": true,
     "showImg": false
    },
    {
     "name": "颜色:【151+11】模特Remi雷米",
     "price": 9,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/035_s09.webp",
-    "hasImg": false,
+    "hasImg": true,
     "showImg": false
    },
    {
     "name": "颜色:【521p】主角Ace艾斯-体育",
     "price": 11,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/035_s10.webp",
-    "hasImg": false,
+    "hasImg": true,
     "showImg": false
    },
    {
     "name": "颜色:【676+3】橄榄球Derek德雷克",
     "price": 13,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/035_s11.webp",
-    "hasImg": false,
+    "hasImg": true,
     "showImg": false
    },
    {
     "name": "颜色:【611p】摔跤手Bryce布莱斯",
     "price": 12,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/035_s12.webp",
-    "hasImg": false,
+    "hasImg": true,
     "showImg": false
    },
    {
     "name": "颜色:【845+5】排球Yuuto悠斗",
     "price": 14,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/035_s13.webp",
-    "hasImg": false,
+    "hasImg": true,
     "showImg": false
    },
    {
     "name": "颜色:【876p】游泳Avan阿万",
     "price": 14,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/035_s14.webp",
-    "hasImg": false,
+    "hasImg": true,
     "showImg": false
    },
    {
     "name": "颜色:【965p】足球Leo雷欧",
     "price": 14,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/035_s15.webp",
-    "hasImg": false,
+    "hasImg": true,
     "showImg": false
    },
    {
     "name": "颜色:【437+1】篮球Zayne赞因",
     "price": 10,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/035_s16.webp",
-    "hasImg": false,
+    "hasImg": true,
     "showImg": false
    }
   ],
