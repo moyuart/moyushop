@@ -1,4 +1,4 @@
-// 商品数据（本地后台导出 2026/11/23 11:24:16）
+// 商品数据（本地后台导出 2026/11/23 14:42:41）
 window.PRODUCTS_VERSION="20261123";
 window.PRODUCTS = [
  {
@@ -59,7 +59,6 @@ window.PRODUCTS = [
    }
   ],
   "isNew": false,
-  "_coverSet": true,
   "isDefaultSpec": false
  },
  {
@@ -145,8 +144,7 @@ window.PRODUCTS = [
    }
   ],
   "isNew": false,
-  "isDefaultSpec": true,
-  "_coverSet": true
+  "isDefaultSpec": true
  },
  {
   "id": 5,
@@ -285,7 +283,6 @@ window.PRODUCTS = [
    }
   ],
   "isNew": false,
-  "_coverSet": true,
   "specImgsOn": false
  },
  {
@@ -330,8 +327,7 @@ window.PRODUCTS = [
     "showImg": true
    }
   ],
-  "isNew": false,
-  "_coverSet": true
+  "isNew": false
  },
  {
   "id": 7,
@@ -848,6 +844,30 @@ window.PRODUCTS = [
   ],
   "specs": [
    {
+    "name": "颜色:【9月新1004+23】万敌",
+    "price": 15,
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/011_s24.webp",
+    "hasImg": true,
+    "showImg": true,
+    "isNew": true
+   },
+   {
+    "name": "颜色:【4月新450+13】白厄",
+    "price": 12,
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/011_s10.webp",
+    "hasImg": true,
+    "showImg": true,
+    "isNew": true
+   },
+   {
+    "name": "颜色:【587p】10月新砂金",
+    "price": 11,
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/011_s25.webp",
+    "hasImg": true,
+    "showImg": true,
+    "isNew": true
+   },
+   {
     "name": "颜色:【86】白厄",
     "price": 6,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/011_s01.webp",
@@ -907,13 +927,6 @@ window.PRODUCTS = [
     "name": "颜色:【493+6】杰帕德",
     "price": 10,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/011_s09.webp",
-    "hasImg": true,
-    "showImg": true
-   },
-   {
-    "name": "颜色:【4月新450+13】白厄",
-    "price": 12,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/011_s10.webp",
     "hasImg": true,
     "showImg": true
    },
@@ -1005,20 +1018,6 @@ window.PRODUCTS = [
     "name": "颜色:【164+2】罗刹",
     "price": 8,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/011_s23.webp",
-    "hasImg": true,
-    "showImg": true
-   },
-   {
-    "name": "颜色:【9月新1004+23】万敌",
-    "price": 15,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/011_s24.webp",
-    "hasImg": true,
-    "showImg": true
-   },
-   {
-    "name": "颜色:【587p】10月新砂金",
-    "price": 11,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/011_s25.webp",
     "hasImg": true,
     "showImg": true
    }
@@ -1370,8 +1369,7 @@ window.PRODUCTS = [
     "showImg": false
    }
   ],
-  "isNew": false,
-  "_coverSet": true
+  "isNew": false
  },
  {
   "id": 20,
@@ -1466,8 +1464,7 @@ window.PRODUCTS = [
     "showImg": true
    }
   ],
-  "isNew": false,
-  "_coverSet": true
+  "isNew": false
  },
  {
   "id": 22,
@@ -1492,8 +1489,7 @@ window.PRODUCTS = [
    }
   ],
   "isNew": false,
-  "isDefaultSpec": true,
-  "_coverSet": true
+  "isDefaultSpec": true
  },
  {
   "id": 23,
@@ -1621,8 +1617,7 @@ window.PRODUCTS = [
     "showImg": true
    }
   ],
-  "isNew": false,
-  "_coverSet": true
+  "isNew": false
  },
  {
   "id": 24,
@@ -2163,18 +2158,20 @@ window.PRODUCTS = [
   ],
   "specs": [
    {
-    "name": "颜色:【9月新332+3】伤痕",
-    "price": 11,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/033_s01.webp",
-    "hasImg": true,
-    "showImg": true
-   },
-   {
     "name": "颜色:【9月新736+7】布兰特",
     "price": 13,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/033_s02.webp",
     "hasImg": true,
-    "showImg": true
+    "showImg": true,
+    "isNew": true
+   },
+   {
+    "name": "颜色:【9月新332+3】伤痕",
+    "price": 11,
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/033_s01.webp",
+    "hasImg": true,
+    "showImg": true,
+    "isNew": true
    },
    {
     "name": "颜色:【4月新393+3】bl男漂泊",
@@ -2555,8 +2552,7 @@ window.PRODUCTS = [
    }
   ],
   "isNew": false,
-  "specImgsOn": false,
-  "_coverSet": true
+  "specImgsOn": false
  },
  {
   "id": 38,
@@ -2670,8 +2666,7 @@ window.PRODUCTS = [
     "showImg": false
    }
   ],
-  "isNew": false,
-  "_coverSet": true
+  "isNew": false
  },
  {
   "id": 39,
@@ -2722,8 +2717,7 @@ window.PRODUCTS = [
     "showImg": true
    }
   ],
-  "isNew": false,
-  "_coverSet": true
+  "isNew": false
  },
  {
   "id": 40,
@@ -2966,8 +2960,7 @@ window.PRODUCTS = [
    }
   ],
   "isNew": false,
-  "isDefaultSpec": true,
-  "_coverSet": true
+  "isDefaultSpec": true
  },
  {
   "id": 46,
@@ -3656,7 +3649,6 @@ window.PRODUCTS = [
    }
   ],
   "isNew": false,
-  "_coverSet": true,
   "isDefaultSpec": false
  },
  {
@@ -3666,7 +3658,7 @@ window.PRODUCTS = [
   "detail": "鸣雏/佐樱多组合汉化+未汉化全彩+黑白电子版全新打包便宜出\n！发子压缩包！需要解压！请自备解压软件比如解压专家！\n[hot]产品介绍： \n1.火影忍者all男鸣佐鸣卡鸣博佐鼬波扉等+鸣雏佐樱多组合共305本，汉化+未汉化（中日字混合）全彩+黑白电子版，不止封面！\n！人工发货，时间：早9:00-晚22:30，上班族看到即回，如有回复/发货不及时请谅解orz",
   "price": 5,
   "cat": "本子",
-  "cover": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/thumb/058_m29.webp",
+  "cover": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/thumb/058_m01.webp",
   "images": [
    "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/058_m01.webp",
    "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/058_m02.webp",
@@ -3697,7 +3689,6 @@ window.PRODUCTS = [
    }
   ],
   "isNew": false,
-  "_coverSet": true,
   "specImgsOn": false
  },
  {
@@ -3760,7 +3751,6 @@ window.PRODUCTS = [
    }
   ],
   "isNew": false,
-  "_coverSet": true,
   "specImgsOn": false
  },
  {
@@ -3788,26 +3778,29 @@ window.PRODUCTS = [
     "price": 1,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/060_s01.webp",
     "hasImg": true,
-    "showImg": true
+    "showImg": true,
+    "isNew": false
+   },
+   {
+    "name": "颜色:【7月新1059+13】公爵莱欧",
+    "price": 15,
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/060_s04.webp",
+    "hasImg": true,
+    "showImg": true,
+    "isNew": true
    },
    {
     "name": "颜色:【1181】26.04新艾尔海森",
     "price": 14,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/060_s02.webp",
     "hasImg": true,
-    "showImg": true
+    "showImg": true,
+    "isNew": true
    },
    {
     "name": "颜色:【1039】9月新一斗",
     "price": 13,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/060_s03.webp",
-    "hasImg": true,
-    "showImg": true
-   },
-   {
-    "name": "颜色:【7月新1059+13】公爵莱欧",
-    "price": 15,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/060_s04.webp",
     "hasImg": true,
     "showImg": true
    },
@@ -4633,8 +4626,7 @@ window.PRODUCTS = [
    }
   ],
   "isNew": false,
-  "specImgsOn": false,
-  "_coverSet": true
+  "specImgsOn": false
  },
  {
   "id": 68,
@@ -4643,7 +4635,7 @@ window.PRODUCTS = [
   "detail": "包便宜出\n规格介绍： \n规格一冲神，23（4汉化+19未）\n规格二银魂，（多银土其他有银桂/银杉等）共183部（27汉化+156未），\n拍下还附赠全平台可用翻译神器及win/安卓可用屏幕翻译器（内附教程）\n！人工发货，时间：早9:00-晚22:30，上班族看到即回，如有回复/发货不及时请谅解orz",
   "price": 6,
   "cat": "本子",
-  "cover": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/thumb/068_m36.webp",
+  "cover": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/thumb/068_m01.webp",
   "images": [
    "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/068_m01.webp",
    "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/068_m36.webp"
@@ -4665,8 +4657,7 @@ window.PRODUCTS = [
    }
   ],
   "isNew": false,
-  "specImgsOn": false,
-  "_coverSet": true
+  "specImgsOn": false
  },
  {
   "id": 69,
@@ -4675,7 +4666,7 @@ window.PRODUCTS = [
   "detail": "狐/萤丸/清守等多组合黑白+少全彩电子版打包便宜出\n产品介绍： \n1.刀剑乱舞月鹤/烛审/兼婶/药婶/双狐/萤丸/清守等多组合共126本，全汉化黑白+少量大概2、3本全彩电子版，不止封面！\n！人工发货，时间：早9:00-晚22:30，上班族看到即回，如有回复/发货不及时请谅解orz\n#超火ACG周边 #刀剑乱舞 #三日月宗近 #鹤丸国永 #和泉守兼定 #药研藤四郎 #加州清光 #大和守安定 #刀剑乱舞花丸",
   "price": 16,
   "cat": "本子",
-  "cover": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/thumb/069_m39.webp",
+  "cover": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/thumb/069_m01.webp",
   "images": [
    "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/069_m01.webp",
    "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/069_m02.webp",
@@ -4691,8 +4682,7 @@ window.PRODUCTS = [
    }
   ],
   "isNew": false,
-  "isDefaultSpec": true,
-  "_coverSet": true
+  "isDefaultSpec": true
  },
  {
   "id": 70,
@@ -4946,57 +4936,57 @@ window.PRODUCTS = [
   ],
   "specs": [
    {
-    "name": "颜色:【图数量+动画数量】名字(规格说明勿拍)",
-    "price": 1,
-    "img": "",
-    "hasImg": false,
-    "showImg": false
-   },
-   {
     "name": "颜色:【717+14】阿斯玛-火影",
     "price": 13,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s02.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s01.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【758+6】卡卡西-火影",
     "price": 13,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s03.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s02.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【220+4】波风水门-火影",
     "price": 9,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s04.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s03.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【922+15】格雷-妖尾",
     "price": 14,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s05.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s04.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【1492+10】拉克萨斯-妖尾",
     "price": 18,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s06.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s05.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【918+23】纳兹-妖尾",
     "price": 15,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s07.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s06.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【492+2】特拉法尔加罗-海贼王",
     "price": 11,
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s07.webp",
+    "hasImg": true,
+    "showImg": true
+   },
+   {
+    "name": "颜色:【1666+14】索隆/佐罗-海贼王",
+    "price": 19,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s08.webp",
     "hasImg": true,
     "showImg": true
@@ -5009,149 +4999,142 @@ window.PRODUCTS = [
     "showImg": true
    },
    {
-    "name": "颜色:【1666+14】索隆/佐罗-海贼王",
-    "price": 19,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s10.webp",
-    "hasImg": true,
-    "showImg": true
-   },
-   {
     "name": "颜色:【1190+7】炭治郎-鬼灭",
     "price": 14,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s11.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s10.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【752】猗窝座-鬼灭",
     "price": 12,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s12.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s11.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【1408p】犬夜叉+少量钢牙-犬",
     "price": 16,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s13.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s12.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【417p】殺生丸-犬",
     "price": 10,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s14.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s13.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【1311+6】程肖宇-独自升级",
     "price": 16,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s15.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s14.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【236】孙策-代号鸢",
     "price": 9,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s16.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s15.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【243+4】银时-银魂",
     "price": 9,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s17.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s16.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【614】折木奉太郎-冰菓",
     "price": 11,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s18.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s17.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【1195】bl劳埃德-过家家",
     "price": 13,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s19.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s18.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【755】bg约尔+劳埃德-过家家",
     "price": 10,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s20.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s19.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【40部】菲伦 × 修塔尔克动画",
     "price": 10,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s21.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s20.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【1539p】菲伦 × 修塔尔克同人图",
     "price": 17,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s22.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s21.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【282+1】bl辛+修-葬送",
     "price": 9,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s23.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s22.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【1394+11】bg芙×辛-葬送",
     "price": 16,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s24.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s23.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【982】bg猫猫+壬氏-药屋",
     "price": 11,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s25.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s24.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【153】bl壬氏-药屋",
     "price": 7,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s26.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s25.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【537p+19】利威尔-进击",
     "price": 12,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s27.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s26.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【425p】鲁路修·兰佩路基-反叛",
     "price": 10,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s28.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s27.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【371】 保科宗四郎 -怪物8",
     "price": 10,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s29.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s28.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【843+1】高仓健+圆城寺仁-胆大党",
     "price": 13,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s30.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s29.webp",
     "hasImg": true,
     "showImg": true
    },
@@ -5760,8 +5743,7 @@ window.PRODUCTS = [
     "showImg": true
    }
   ],
-  "isNew": false,
-  "_coverSet": true
+  "isNew": false
  },
  {
   "id": 90,
@@ -5826,7 +5808,6 @@ window.PRODUCTS = [
     "showImg": true
    }
   ],
-  "isNew": false,
-  "_coverSet": true
+  "isNew": false
  }
 ];
