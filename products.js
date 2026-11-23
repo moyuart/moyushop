@@ -1,5 +1,5 @@
 // 商品数据（本地后台导出 2026/11/23 15:44:58）
-window.PRODUCTS_VERSION="20261123154458";
+window.PRODUCTS_VERSION="20261123160454";
 window.PRODUCTS = [
  {
   "id": 2,
@@ -1030,7 +1030,7 @@ window.PRODUCTS = [
   "title": "160本海贼王全男索治/罗路/索路/艾路唐鳄/艾萨/",
   "detail": "单人全彩等中日英字全彩+黑白电子版打包便宜出\n！发子压缩包！需要解压！请自备解压软件比如解压专家！\n[hot]产品介绍： \n1.海贼王组合共160本，含索治/罗路/索路/艾路唐鳄/艾萨/等组合+画师出的个人全彩，少全彩+多黑白电子版，不止封面！[捂脸哭]\n2.包内分类参照图二\n！人工发货，时间：早9:00-晚22:30，上班族看到即回，如有回复/发货不及时请谅解orz",
   "price": 15,
-  "cat": "角色包",
+  "cat": "本子",
   "cover": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/thumb/012_m01.webp",
   "images": [
    "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/012_m01.webp",
@@ -5153,7 +5153,7 @@ window.PRODUCTS = [
     "showImg": true
    }
   ],
-  "isNew": false
+  "isNew": true
  },
  {
   "id": 77,
