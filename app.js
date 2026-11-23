@@ -4,7 +4,7 @@
 const SITE = window.SITE || {};
 const PRODUCTS = window.PRODUCTS || [];
 const CALC = window.Calc;
-let state = { cat:'全部', search:'', sort:'default', detailId:null, selectedSpecs:new Set(), galleryIdx:0, giftId:null, specSearch:'', specFoldAt:6 };
+let state = { cat:'全部', search:'', sort:'default', detailId:null, selectedSpecs:new Set(), galleryIdx:0, galleryFromSpec:-1, giftId:null, specSearch:'', specFoldAt:6 };
 let FAVS = loadFavs();
 let posterPages = [], posterIdx = 0;
 let unzipKind = 'pc';
@@ -16,11 +16,14 @@ let visibleCount = 40; // 首屏渐进加载：先显示 40 款
    新域名加载失败时 onerror / loadImg 自动切回旧域名重试。 */
 const IMG_OLD = (SITE.imgDomain&&SITE.imgDomain.old)||'https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev';
 const IMG_NEW = (SITE.imgDomain&&SITE.imgDomain.new)||'';
+const IMG_VER = window.PRODUCTS_VERSION || ''; // 图片版本号：后台每次导出都会变，用来破 R2/CDN 的 1 年强缓存
 function imgMode(){ return (SITE.imgDomain&&SITE.imgDomain.mode)||'old'; }
+/* 统一图片 URL：先切域名，再幂等追加 ?v=版本号（已有 v= 不重复加）。
+   R2 同名文件覆盖后 URL 不变，不加版本号浏览器/CDN 会一直显示旧图。 */
 function imgUrl(u){
   if(!u||typeof u!=='string') return u;
-  if(imgMode()==='old'||!IMG_NEW) return u;
-  if(u.indexOf(IMG_OLD)===0) return IMG_NEW+u.slice(IMG_OLD.length);
+  if(imgMode()!=='old' && IMG_NEW && u.indexOf(IMG_OLD)===0) u=IMG_NEW+u.slice(IMG_OLD.length);
+  if(IMG_VER && !/[?&]v=/.test(u)) u+=(u.indexOf('?')>=0?'&':'?')+'v='+encodeURIComponent(IMG_VER);
   return u;
 }
 function imgFallback(u){
@@ -201,7 +204,7 @@ function goBack(){ if(history.length>1) history.back(); else goHome(); }
 function showDetail(id){
   const p=PRODUCTS.find(x=>x.id===id);
   if(!p){ showHome(); return; }
-  state.detailId=id; state.selectedSpecs=new Set(); state.galleryIdx=0; state.giftId=null;
+  state.detailId=id; state.selectedSpecs=new Set(); state.galleryIdx=0; state.galleryFromSpec=-1; state.giftId=null;
   document.getElementById('view-home').hidden=true;
   document.getElementById('view-fav').hidden=true;
   const v=document.getElementById('view-detail'); v.hidden=false; setActiveTab('home');
@@ -221,7 +224,7 @@ function showDetail(id){
   </div>`:'';
   const specHtml=p.specs.map((s,i)=>{
     const withImg=specShowImg(s,p);
-    const pic=withImg?`<div class="si-pic"><img class="si-img" src="${imgUrl(s.img)}" alt="" loading="lazy" onerror="imgErr(this)"></div>`:'';
+    const pic=withImg?`<div class="si-pic" title="点图看大图" onclick="previewSpecImg(event,${i})"><img class="si-img" src="${imgUrl(s.img)}" alt="" loading="lazy" onerror="imgErr(this)"><span class="si-pic-hint">点图看大图</span></div>`:'';
     const folded=i>=SPEC_FOLD_AT?' spec-fold':'';
     const newTag=s.isNew?'<span class="si-new">新品</span>':'';
     return `
@@ -244,8 +247,12 @@ function showDetail(id){
       <button class="btn-back" onclick="goBack()"><svg class="ic"><use href="#i-back"/></svg> 返回商品列表</button>
       <div class="detail-top">
         <div class="gallery-card">
-          <div class="gallery-main" onclick="openLightbox('${imgUrl(imgs[state.galleryIdx])}')">
+          <div class="gallery-main" onclick="openLightbox(currentGalleryUrl())">
             <img id="galleryMain" src="${imgUrl(imgs[0])}" alt="${esc(p.title)}" onerror="imgErr(this)">
+          </div>
+          <div class="gallery-preview-tip" id="galleryPreviewTip" hidden>
+            <span id="galleryPreviewName"></span>
+            <button type="button" onclick="clearSpecPreview(event)">返回商品图</button>
           </div>
           <div class="gallery-thumbs">
             ${imgs.map((u,i)=>`<img src="${imgUrl(u)}" class="${i===0?'active':''}" onclick="setGallery(${i})" loading="lazy" onerror="imgErr(this)">`).join('')}
@@ -297,8 +304,36 @@ function setGallery(i){
   const p=PRODUCTS.find(x=>x.id===state.detailId); if(!p) return;
   const imgs=p.images.length?p.images:[p.cover.replace('/thumb/','/full/')];
   state.galleryIdx=i;
+  state.galleryFromSpec=-1; // 点商品缩略图即退出规格图预览
+  const tip=document.getElementById('galleryPreviewTip'); if(tip)tip.hidden=true;
+  document.querySelectorAll('.spec-item').forEach(el=>el.classList.remove('spec-preview'));
   const m=document.getElementById('galleryMain'); if(m){ m.src=imgUrl(imgs[i]); m.onerror=function(){ const fb=imgFallback(this.src); if(fb){this.onerror=null;this.src=fb;} }; }
   document.querySelectorAll('.gallery-thumbs img').forEach((el,j)=>el.classList.toggle('active',j===i));
+}
+/* 当前大图对应的原始 URL（点大图看全屏时用；正在预览规格图则取规格图） */
+function currentGalleryUrl(){
+  const p=PRODUCTS.find(x=>x.id===state.detailId); if(!p) return '';
+  if(state.galleryFromSpec>=0){ const s=p.specs[state.galleryFromSpec]; if(s&&s.img) return s.img; }
+  const imgs=p.images.length?p.images:[p.cover.replace('/thumb/','/full/')];
+  return imgs[state.galleryIdx]||imgs[0]||'';
+}
+/* 点右侧规格图：左侧大图切到该规格图，并顺手选中该规格 */
+function previewSpecImg(e,i){
+  if(e){ e.stopPropagation(); e.preventDefault(); }
+  const p=PRODUCTS.find(x=>x.id===state.detailId); if(!p) return;
+  const s=p.specs[i]; if(!s||!s.img) return;
+  state.galleryFromSpec=i;
+  const m=document.getElementById('galleryMain');
+  if(m){ m.src=imgUrl(s.img); m.onerror=function(){ const fb=imgFallback(this.src); if(fb){this.onerror=null;this.src=fb;} }; }
+  document.querySelectorAll('.gallery-thumbs img').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.spec-item').forEach((el,j)=>el.classList.toggle('spec-preview',j===i));
+  const tip=document.getElementById('galleryPreviewTip');
+  if(tip){ tip.hidden=false; const n=document.getElementById('galleryPreviewName'); if(n)n.textContent='正在看：'+String(s.name||('规格'+(i+1))).slice(0,42); }
+  toggleSpec(i,true); // 点图即选中，与点规格卡行为一致
+}
+function clearSpecPreview(e){
+  if(e){ e.stopPropagation(); e.preventDefault(); }
+  setGallery(state.galleryIdx<0?0:state.galleryIdx);
 }
 function toggleSpec(i, force){
   const p=PRODUCTS.find(x=>x.id===state.detailId); if(!p) return;
@@ -456,8 +491,8 @@ function loadImg(url){
     im.crossOrigin='anonymous';
     im.onload=()=>res(im);
     im.onerror=()=>{
-      // 新域名失败 -> 回退旧域名再试一次
-      const fb=imgFallback(url);
+      // 新域名失败 -> 用实际请求的 URL（含版本号）回退旧域名再试一次
+      const fb=imgFallback(im.src);
       if(fb){
         const im2=new Image(); im2.crossOrigin='anonymous';
         im2.onload=()=>res(im2); im2.onerror=()=>rej(new Error('img fail'));
