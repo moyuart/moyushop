@@ -654,22 +654,24 @@ async function drawPoster(items, order){
     ctx.fillStyle='#E23E58'; ctx.font='bold 36px sans-serif'; ctx.fillText('¥'+it.price,tx,y+170);
     y+=itemH;
   }
-  // 底部：金额明细 + QQ + 二维码
+  // 底部：金额明细 + QQ + 二维码（左右分栏：右侧固定留给二维码，左侧文字严格限宽）
   const by=H-footH+8;
   ctx.fillStyle='#fff'; roundRect(ctx,pad-8,by,W-2*pad+16,footH-24,16); ctx.fill();
-  ctx.fillStyle='#26233A'; ctx.font='bold 24px sans-serif';
-  ctx.fillText('把这图发QQ给店主，说"图里这些我要"',pad,by+40);
+  const qrX=W-pad-190, textMaxW=(qrX-16)-pad; // 文字最多画到二维码左侧再留16px，绝不重叠
+  fitText(ctx,'把这图发QQ给店主，说"图里这些我要"',pad,by+40,textMaxW,23,true,'#26233A');
   if(order){
-    ctx.font='21px sans-serif'; ctx.fillStyle='#7C7791';
-    ctx.fillText('商品小计 ¥'+order.subtotalYuan+(order.appliedDiscount?' · '+order.appliedDiscount.label+' -¥'+order.discountYuan:''),pad,by+76);
-    ctx.fillStyle='#E23E58'; ctx.font='bold 30px sans-serif';
-    ctx.fillText('应付 ¥'+order.payableYuan+(order.gift?' · 含赠品'+order.gift.name:''),pad,by+116);
+    fitText(ctx,'商品小计 ¥'+order.subtotalYuan+(order.appliedDiscount?' · '+order.appliedDiscount.label+' -¥'+order.discountYuan:''),pad,by+80,textMaxW,20,false,'#7C7791');
+    fitText(ctx,'应付 ¥'+order.payableYuan,pad,by+126,textMaxW,36,true,'#E23E58');
+    // 赠品标题单独一行、限宽自动换行（最多2行），彻底解决长名字展示不全/不换行被截断的问题
+    if(order.giftEligible){
+      const giftTxt=order.gift ? ('含赠品：'+order.gift.name) : '已达满赠 · 可任选 1 份赠品';
+      ctx.font='bold 19px sans-serif'; ctx.fillStyle='#C2356B';
+      wrapText(ctx,giftTxt,pad,by+166,textMaxW,25,2);
+    }
   }
-  ctx.fillStyle='#5B4BC4'; ctx.font='bold 34px sans-serif';
-  ctx.fillText('QQ：'+(SITE.qq||'3998694209'),pad,by+162);
-  if(SITE.qr){ await tryDrawImg(ctx,SITE.qr,W-pad-190,by+20,190,190,false); }
-  ctx.fillStyle='#7C7791'; ctx.font='19px sans-serif';
-  ctx.fillText('（截图发我，我按图上的款式和规格回复你）',pad,by+250);
+  fitText(ctx,'QQ：'+(SITE.qq||'3998694209'),pad,by+224,textMaxW,32,true,'#5B4BC4');
+  if(SITE.qr){ await tryDrawImg(ctx,SITE.qr,qrX,by+20,190,190,false); }
+  fitText(ctx,'（截图发我，我按图上的款式和规格回复你）',pad,by+258,textMaxW,17,false,'#7C7791');
   return c.toDataURL('image/png');
 }
 async function genPoster(){
@@ -718,9 +720,10 @@ async function drawLongPoster(items, pageNo, totalPage, order, totalCount){
     fitText(ctx,'共 '+(totalCount||items.length)+' 件 · 商品小计 ¥'+order.subtotalYuan+(order.appliedDiscount?' · '+order.appliedDiscount.label+' -¥'+order.discountYuan:''),pad,by+82,textMaxW,20,false,'#7C7791');
     fitText(ctx,'应付总价 ¥'+order.payableYuan,pad,by+134,textMaxW,42,true,'#E23E58');
     if(order.giftEligible){
-      // 买家已选赠品则显示其真实标题；仅达标未选则提示去选
+      // 买家已选赠品则显示其真实标题；仅达标未选则提示去选。限宽换行，展示完整不截断
       const giftTxt = order.gift ? ('已选赠品：'+order.gift.name) : '已达满赠 · 可任选 1 份赠品';
-      fitText(ctx,giftTxt,pad,by+170,textMaxW,19,true,'#C2356B');
+      ctx.font='bold 19px sans-serif'; ctx.fillStyle='#C2356B';
+      wrapText(ctx,giftTxt,pad,by+170,textMaxW,25,2);
     }
   }
   fitText(ctx,'QQ：'+(SITE.qq||'3998694209'),pad,by+216,textMaxW,34,true,'#5B4BC4');
