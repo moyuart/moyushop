@@ -1,5 +1,5 @@
-// 商品数据（本地后台导出 2026/11/23 18:04:37）
-window.PRODUCTS_VERSION="20261123180437";
+// 商品数据（本地后台导出 2026/11/24 10:30:51）
+window.PRODUCTS_VERSION="20261124103051";
 window.PRODUCTS = [
  {
   "id": 2,
@@ -5814,5 +5814,45 @@ window.PRODUCTS = [
    }
   ],
   "isNew": false
+ },
+ {
+  "id": 91,
+  "goodsId": "",
+  "title": "第五人格+文豪野犬+神奇宝贝全男本",
+  "detail": "！发百度网盘压缩包！需要解压！请自备解压软件比如解压专家！\n[hot]产品介绍： \n1.多组合本，默认汉化+未汉化（中日字混合）全彩+黑白电子版，不止封面！\n！人工发货，时间：早9:00-晚22:30，上班族看到即回，如有回复/发货不及时请谅解orz",
+  "price": 5,
+  "cat": "本子",
+  "cover": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/thumb/091_m01.webp",
+  "images": [
+   "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/091_m01.webp",
+   "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/091_m02.webp",
+   "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/091_m03.webp"
+  ],
+  "specs": [
+   {
+    "name": "颜色:【46本】第五人格全男组合",
+    "price": 5,
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/091_s01.webp",
+    "hasImg": true,
+    "showImg": false
+   },
+   {
+    "name": "颜色:【40本】神奇宝贝小智相关",
+    "price": 5,
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/091_s02.webp",
+    "hasImg": true,
+    "showImg": false
+   },
+   {
+    "name": "颜色:【26本】文豪野犬全男组合",
+    "price": 3,
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/091_s03.webp",
+    "hasImg": true,
+    "showImg": false
+   }
+  ],
+  "isNew": false,
+  "specImgsOn": true,
+  "isDefaultSpec": false
  }
 ];
