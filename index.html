@@ -216,6 +216,18 @@
   </div>
 </div>
 
+<!-- 新手选购指南（公告栏点击打开） -->
+<div class="modal" id="buyGuideModal" hidden>
+  <div class="mask" onclick="closeModal('buyGuideModal')"></div>
+  <div class="box buyguide-box">
+    <button class="box-close" onclick="closeModal('buyGuideModal')" aria-label="关闭"><svg class="ic"><use href="#i-close"/></svg></button>
+    <h3 id="buyGuideTitle">新手怎么买？3 步搞定</h3>
+    <p class="box-sub" id="buyGuideSub">照着做，下单不求人</p>
+    <div class="buyguide-list" id="buyGuideList"></div>
+    <p class="buyguide-foot">还是拿不准？直接把想找的角色 / 画师发给店主问，更快～ <button class="link-btn" onclick="closeModal('buyGuideModal');openQQ()">联系店主</button></p>
+  </div>
+</div>
+
 <!-- 赠品自选 -->
 <div class="modal" id="giftModal" hidden>
   <div class="mask" onclick="closeModal('giftModal')"></div>
