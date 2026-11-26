@@ -65,7 +65,14 @@ img{display:block;max-width:100%}
 .notice>div{
   background:linear-gradient(90deg,#FFF6E9,#FFFBF3);color:#9A6E1E;border:1px solid #FBE6BE;
   border-radius:12px;text-align:center;padding:9px 16px;font-size:13px;font-weight:600;
+  display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
 }
+.notice .notice-link{
+  flex-shrink:0;border:none;background:#9A6E1E;color:#FFF8EC;border-radius:20px;
+  padding:3px 12px;font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap;
+  -webkit-tap-highlight-color:transparent;
+}
+.notice .notice-txt{line-height:1.5}
 
 /* ============ 解压横幅 ============ */
 .unzip-banner{
@@ -258,7 +265,35 @@ img{display:block;max-width:100%}
 .d-sub{color:var(--ink-2);font-size:13px;margin:6px 0 18px}
 
 /* 优惠条 */
+/* PC 左栏：价格 + 优惠摘要（主图下常驻，随规格联动） */
+.pc-summary{display:none}
+@media(min-width:721px){
+  .pc-summary{
+    display:block;margin-top:14px;padding:13px 15px;border-radius:14px;
+    background:linear-gradient(105deg,#FFF6FA,#fff 65%);border:1px solid #FBD4E2;
+  }
+  .pcs-price{color:var(--price);font-size:27px;font-weight:800;letter-spacing:-1px;line-height:1.1}
+  .pcs-price small{font-size:14px}
+  .pcs-tags{display:flex;gap:7px;flex-wrap:wrap;margin:9px 0 2px}
+  .pcs-tag{font-size:11.5px;font-weight:700;color:#B23A67;background:#fff;border:1px solid #FBD4E2;border-radius:7px;padding:3px 9px}
+}
+.pcs-gift{
+  display:block;width:100%;margin-top:11px;padding:11px 12px;border:none;border-radius:11px;
+  background:linear-gradient(100deg,#C2356B,#E0527E);color:#fff;font-size:14px;font-weight:800;
+  cursor:pointer;box-shadow:0 5px 16px rgba(194,53,107,.24);-webkit-tap-highlight-color:transparent;
+}
+.pcs-gift.picked{background:linear-gradient(100deg,#A52C5B,#C2356B)}
+@keyframes giftPulse{0%{box-shadow:0 5px 16px rgba(194,53,107,.24),0 0 0 0 rgba(224,82,126,.5)}60%{box-shadow:0 5px 16px rgba(194,53,107,.24),0 0 0 12px rgba(224,82,126,0)}100%{box-shadow:0 5px 16px rgba(194,53,107,.24),0 0 0 0 rgba(224,82,126,0)}}
+.pcs-gift.pulse{animation:giftPulse .85s ease-out 1}
+
 .promo-strip{background:var(--accent-l);border:1px solid #FBD4E2;border-radius:14px;padding:12px 14px;margin-bottom:18px}
+/* 右侧明细：默认收起为一行 */
+.ps-summary{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;border:none;background:none;padding:2px 0;cursor:pointer;text-align:left}
+.pss-left{display:inline-flex;align-items:center;gap:6px;color:#C2356B;font-size:13px;font-weight:800}
+.pss-left .ic{width:17px;height:17px}
+.pss-right{font-size:14px;color:var(--ink);font-weight:700;white-space:nowrap}
+.pss-arrow{color:#C2356B;font-size:11.5px;margin-left:5px;font-weight:800}
+.ps-detail{margin-top:10px;padding-top:4px}
 .promo-strip .ps-title{display:flex;align-items:center;gap:6px;color:#C2356B;font-size:13px;font-weight:800;margin-bottom:8px}
 .promo-strip .ps-title .ic{width:17px;height:17px}
 .promo-rule{font-size:12px;color:#9A3A60;margin:2px 0}
@@ -422,6 +457,23 @@ img{display:block;max-width:100%}
 .guide-item:nth-child(3) .gi-badge{background:#3E86B8}
 .guide-item:nth-child(4) .gi-badge{background:#C9903F}
 .gi-desc{font-size:13px;line-height:1.55;color:var(--ink)}
+
+/* 新手选购指南弹窗 */
+.buyguide-box{max-width:440px;text-align:left}
+.buyguide-box h3{text-align:center;font-size:20px}
+.buyguide-box .box-sub{text-align:center}
+.buyguide-list{display:flex;flex-direction:column;gap:11px;margin:4px 0 16px}
+.bg-item{display:flex;gap:11px;align-items:flex-start;padding:13px 14px;border-radius:13px;background:var(--bg-2);border:1px solid var(--line-2)}
+.bg-item:nth-child(1){background:var(--primary-l2)}
+.bg-item:nth-child(2){background:var(--accent-l)}
+.bg-item:nth-child(3){background:#EAF4FB}
+.bg-num{flex:none;width:25px;height:25px;border-radius:50%;background:var(--primary);color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.bg-item:nth-child(2) .bg-num{background:var(--accent)}
+.bg-item:nth-child(3) .bg-num{background:#3E86B8}
+.bg-body{display:flex;flex-direction:column;gap:4px;min-width:0}
+.bg-body strong{font-size:14px;color:var(--ink);font-weight:800}
+.bg-body span{font-size:12.5px;line-height:1.65;color:var(--ink-2)}
+.buyguide-foot{font-size:12px;color:var(--ink-2);line-height:1.6;margin:0;text-align:center}
 .gi-tip{margin-top:5px;font-size:12px;line-height:1.55;color:var(--ink-2);background:rgba(255,255,255,.6);border-radius:8px;padding:6px 8px}
 .guide-foot{font-size:12px;color:var(--ink-2);line-height:1.6}
 .poster-box{max-width:410px}
