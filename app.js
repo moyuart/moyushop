@@ -70,7 +70,11 @@ function toggleFav(pid, specIdx){
 function init(){
   setText('shopName', SITE.shopName||'墨鱼铺子');
   setText('shopSlogan', SITE.slogan||'');
-  const nb=document.getElementById('noticeBar'); if(nb) nb.innerHTML='<div>'+esc(SITE.notice||'')+'</div>';
+  const nb=document.getElementById('noticeBar');
+  if(nb){
+    const linkText=SITE.noticeLinkText||'新手必看 ›';
+    nb.innerHTML='<div><span class="notice-txt">'+esc(SITE.notice||'')+'</span><button class="notice-link" onclick="openBuyGuide()">'+esc(linkText)+'</button></div>';
+  }
   setText('updateDate', SITE.updateDate?('更新 '+SITE.updateDate):'');
   setText('qqNumber', SITE.qq||'3998694209');
   setText('posterQqNum', SITE.qq||'3998694209');
@@ -257,6 +261,12 @@ function showDetail(id){
           </div>
           <div class="gallery-thumbs">
             ${imgs.map((u,i)=>`<img src="${imgUrl(u)}" class="${i===0?'active':''}" onclick="setGallery(${i})" loading="lazy" onerror="imgErr(this)">`).join('')}
+          </div>
+          <!-- PC 端：价格 + 优惠摘要（随规格联动，主图下常驻） -->
+          <div class="pc-summary" id="pcSummary">
+            <div class="pcs-price num" id="pcsPrice"><small>¥</small>${p.price}<small> 起</small></div>
+            <div class="pcs-tags" id="pcsTags"><span class="pcs-tag">满3件9折</span><span class="pcs-tag">满¥50送赠品</span></div>
+            <button class="pcs-gift" id="pcsGiftBtn" hidden onclick="openGift()">🎁 选赠品</button>
           </div>
         </div>
         <div class="info-card">
@@ -447,35 +457,67 @@ function currentOrder(){
   return CALC.calcOrder(items, SITE.promo||{}, state.giftId);
 }
 function favSelectedItems(){ return FAVS.filter(f=>favSelected.has(f.key)).map(f=>({price:f.price,qty:1})); }
+let promoDetailOpen=false;   // 右侧优惠明细是否展开（默认收起）
+let lastGiftEligible=false;   // 上一轮达标状态，用于触发一次呼吸高亮
+function togglePromoDetail(){ promoDetailOpen=!promoDetailOpen; renderPromoStrip(); }
 function renderPromoStrip(){
-  const box=document.getElementById('promoStrip'); if(!box) return;
+  const box=document.getElementById('promoStrip');
   const giftBtn=document.getElementById('giftBtnM');
+  const pc=document.getElementById('pcSummary');
   const items=selectedItems();
-  if(!items.length){ box.hidden=true; if(giftBtn)giftBtn.hidden=true; return; }
+  if(!items.length){
+    if(box)box.hidden=true; if(giftBtn)giftBtn.hidden=true;
+    // 左侧摘要复位为起价
+    if(pc){ const pp=document.getElementById('pcsPrice'); if(pp)pp.innerHTML=`<small>¥</small>${(PRODUCTS.find(x=>x.id===state.detailId)||{}).price||''}<small> 起</small>`; const g=document.getElementById('pcsGiftBtn'); if(g){g.hidden=true;g.classList.remove('pulse');} }
+    lastGiftEligible=false; return;
+  }
   const r=currentOrder();
-  // 底部操作条醒目赠品入口：达标才亮起，选中后改文案
+  const justUnlocked = r.giftEligible && !lastGiftEligible;
+  lastGiftEligible=r.giftEligible;
+
+  // 底部操作条赠品入口（手机端沿用）
   if(giftBtn){
     giftBtn.hidden=!r.giftEligible;
     if(r.giftEligible) giftBtn.textContent=state.giftId?'🎁 赠品已选✓':'🎁 选赠品';
     giftBtn.classList.toggle('picked',!!state.giftId);
   }
-  let html='<div class="ps-title"><svg class="ic"><use href="#i-gift"/></svg> 优惠自动算好了</div>';
-  html+=`<div class="calc-line"><span class="cl-label">商品小计（${r.qty}件）</span><span class="cl-val num">¥${r.subtotalYuan}</span></div>`;
-  if(r.appliedDiscount){
-    html+=`<div class="calc-line discount"><span class="cl-label">${esc(r.appliedDiscount.label)}</span><span class="cl-val num">-¥${r.discountYuan}</span></div>`;
+
+  // 左侧 PC 摘要条：价格联动 + 赠品按钮达标高亮
+  if(pc){
+    const pp=document.getElementById('pcsPrice');
+    if(pp) pp.innerHTML = (items.length===1)
+      ? `<small>¥</small>${r.payableYuan}`
+      : `<small>¥</small>${r.payableYuan}<small> 合计·${r.qty}件</small>`;
+    const pg=document.getElementById('pcsGiftBtn');
+    if(pg){
+      pg.hidden=!r.giftEligible;
+      if(r.giftEligible){
+        pg.textContent=state.giftId?'🎁 赠品已选✓':'🎁 领赠品 · 已解锁';
+        pg.classList.toggle('picked',!!state.giftId);
+        if(justUnlocked){ pg.classList.remove('pulse'); void pg.offsetWidth; pg.classList.add('pulse'); }
+      }
+    }
   }
-  html+=`<div class="calc-total"><span class="ct-label">应付（已取整）</span><span class="ct-val num">¥${r.payableYuan}</span></div>`;
-  if(r.giftEligible){
-    html+=`<div class="gift-picked"><svg class="ic" style="width:16px;height:16px"><use href="#i-gift"/></svg> `;
-    html+= state.giftId
-      ? `赠品：${esc(r.gift?r.gift.name:'已选')} <button class="link-btn" onclick="openGift()">更换</button>`
-      : `已达满赠！<button class="link-btn" onclick="openGift()">点这选 1 份赠品</button>`;
-    html+='</div>';
-  } else if((SITE.promo&&SITE.promo.gift&&SITE.promo.gift.enabled)){
-    const th=(SITE.promo.gift.threshold||0);
-    html+=`<div class="promo-rule">再买够 ¥${th} 可送 1 份赠品</div>`;
+
+  // 右侧完整明细：默认收起为一行，点"展开明细"看小计/折扣/应付
+  if(box){
+    let html='<button class="ps-summary" onclick="togglePromoDetail()"><span class="pss-left"><svg class="ic"><use href="#i-gift"/></svg> 优惠自动算好了'+(r.appliedDiscount?` · ${esc(r.appliedDiscount.label)}`:'')+'</span><span class="pss-right num">应付 ¥'+r.payableYuan+' <span class="pss-arrow">'+(promoDetailOpen?'收起 ⌃':'明细 ⌄')+'</span></span></button>';
+    if(promoDetailOpen){
+      html+='<div class="ps-detail">';
+      html+=`<div class="calc-line"><span class="cl-label">商品小计（${r.qty}件）</span><span class="cl-val num">¥${r.subtotalYuan}</span></div>`;
+      if(r.appliedDiscount) html+=`<div class="calc-line discount"><span class="cl-label">${esc(r.appliedDiscount.label)}</span><span class="cl-val num">-¥${r.discountYuan}</span></div>`;
+      html+=`<div class="calc-total"><span class="ct-label">应付（已取整）</span><span class="ct-val num">¥${r.payableYuan}</span></div>`;
+      if(r.giftEligible){
+        html+=`<div class="gift-picked"><svg class="ic" style="width:16px;height:16px"><use href="#i-gift"/></svg> `;
+        html+= state.giftId ? `赠品：${esc(r.gift?r.gift.name:'已选')} <button class="link-btn" onclick="openGift()">更换</button>` : `已达满赠！<button class="link-btn" onclick="openGift()">点这选 1 份赠品</button>`;
+        html+='</div>';
+      } else if(SITE.promo&&SITE.promo.gift&&SITE.promo.gift.enabled){
+        html+=`<div class="promo-rule">再买够 ¥${(SITE.promo.gift.threshold||0)} 可送 1 份赠品</div>`;
+      }
+      html+='</div>';
+    }
+    box.innerHTML=html; box.hidden=false;
   }
-  box.innerHTML=html; box.hidden=false;
 }
 
 /* ---------- 首页满赠福利横幅 + 展示弹窗 ---------- */
@@ -902,6 +944,20 @@ const CAT_GUIDE_FALLBACK={
   '3d动作包':'挑一个画师，内容是这个画师风格的 3D/2D 建模视频或动图（会动的）。',
   '本子':'挑一个本子，内容是有剧情、有文字的漫画，默认中外文字混合。'
 };
+/* 新手选购指南：公告栏点击打开，内容后台可编辑（占位 {qq} 自动替换为店铺 QQ） */
+function openBuyGuide(){
+  const g=SITE.buyGuide||{};
+  const qq=SITE.qq||'3998694209';
+  const fill=t=>esc(String(t==null?'':t)).replace(/\{qq\}/g, esc(qq));
+  setText('buyGuideTitle', g.title||'新手怎么买？3 步搞定');
+  setText('buyGuideSub', g.sub||'照着做，下单不求人');
+  const box=document.getElementById('buyGuideList');
+  if(box){
+    const steps=Array.isArray(g.steps)?g.steps:[];
+    box.innerHTML=steps.map((s,i)=>`<div class="bg-item"><span class="bg-num">${i+1}</span><div class="bg-body"><strong>${fill(s.name)}</strong><span>${fill(s.desc)}</span></div></div>`).join('');
+  }
+  openModal('buyGuideModal');
+}
 function openCatGuide(){
   const guide=SITE.catGuide||CAT_GUIDE_FALLBACK;
   const tips=SITE.specTip||{};
