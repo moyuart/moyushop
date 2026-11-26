@@ -1,5 +1,5 @@
-// 商品数据（本地后台导出 2026/11/26 20:52:23）
-window.PRODUCTS_VERSION="20261126205223";
+// 商品数据（本地后台导出 2026/11/26 21:58:09）
+window.PRODUCTS_VERSION="20261126215809";
 window.PRODUCTS = [
  {
   "id": 2,
@@ -413,7 +413,7 @@ window.PRODUCTS = [
    {
     "name": "颜色:【548p】​​春野樱(火)",
     "price": 10,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/007_s10.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/007_s14.webp",
     "hasImg": true,
     "showImg": true
    },
