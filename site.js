@@ -83,5 +83,14 @@ window.SITE = {
    ]
   }
  },
+ "welfare": {
+  "enabled": true,
+  "title": "免费壁纸",
+  "sub": "高清男角色 · 自取",
+  "modalTitle": "高清男角色壁纸 · 免费领取",
+  "modalSub": "不用下单，复制下面的链接保存即可",
+  "link": "https://pan.baidu.com/s/1hJqrOSZ-esA1I3pwLuDFCw",
+  "pwd": "s3zh"
+ },
  "r2base": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev"
 };

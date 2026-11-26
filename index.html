@@ -47,6 +47,7 @@
   <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 3v12m0 0 5-5m-5 5-5-5M4 19h16"/></symbol>
   <symbol id="i-back" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></symbol>
   <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 13h18M12 9v12M12 9C9 9 7 8 7 6a2 2 0 0 1 4 0c0 2 1 3 1 3zm0 0c3 0 5-1 5-3a2 2 0 0 0-4 0c0 2-1 3-1 3z"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9" r="1.5"/><path d="m21 16-5-5-8 8"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
   <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
   <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></symbol>
@@ -114,12 +115,19 @@
 
   <div class="result-bar"><span id="resultCount"></span></div>
 
-  <!-- 满赠福利横幅（有赠品活动时才显示，点开看有什么赠品） -->
-  <div class="gift-banner" id="giftBanner" hidden onclick="openGiftShow()">
-    <span class="gb-gift"><svg class="ic"><use href="#i-gift"/></svg></span>
-    <span class="gb-text"><strong id="giftBannerTitle">满赠福利</strong><span id="giftBannerSub">点这里看看有什么赠品</span></span>
-    <span class="gb-thumbs" id="giftBannerThumbs"></span>
-    <span class="gb-arrow">看看 ›</span>
+  <!-- 福利并排区：赠品(2/3) + 免费壁纸(1/3)；赠品活动关闭时壁纸自动占满整行 -->
+  <div class="welfare-row" id="welfareRow">
+    <div class="gift-banner" id="giftBanner" hidden onclick="openGiftShow()">
+      <span class="gb-gift"><svg class="ic"><use href="#i-gift"/></svg></span>
+      <span class="gb-text"><strong id="giftBannerTitle">满赠福利</strong><span id="giftBannerSub">点这里看看有什么赠品</span></span>
+      <span class="gb-thumbs" id="giftBannerThumbs"></span>
+      <span class="gb-arrow">看看 ›</span>
+    </div>
+    <div class="wallpaper-banner" id="wallpaperBanner" hidden onclick="openWallpaper()" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openWallpaper()}">
+      <span class="wp-icon"><svg class="ic"><use href="#i-image"/></svg></span>
+      <span class="wp-text"><strong id="wallpaperTitle">免费壁纸</strong><span id="wallpaperSub">高清男角色 · 自取</span></span>
+      <span class="wp-arrow">›</span>
+    </div>
   </div>
 
   <!-- 商品网格 -->
@@ -230,6 +238,32 @@
     <div class="giftshow-grid" id="giftShowList"></div>
     <p class="giftshow-foot">达到门槛后，在商品里选好款 → 点「生成咨询图」，就能挑 <b>1 份</b>赠品一起发给我～</p>
     <button class="btn-primary btn-block" onclick="closeModal('giftShowModal')">知道啦，去逛逛</button>
+  </div>
+</div>
+
+<!-- 免费壁纸领取（首页壁纸入口点开） -->
+<div class="modal" id="wallpaperModal" hidden>
+  <div class="mask" onclick="closeModal('wallpaperModal')"></div>
+  <div class="box wallpaper-box">
+    <button class="box-close" onclick="closeModal('wallpaperModal')" aria-label="关闭"><svg class="ic"><use href="#i-close"/></svg></button>
+    <div class="wp-head"><span class="wp-head-ic"><svg class="ic"><use href="#i-image"/></svg></span><h3 id="wallpaperModalTitle">高清男角色壁纸 · 免费领取</h3></div>
+    <p class="box-sub" id="wallpaperSub2">不用下单，复制下面的链接保存即可</p>
+    <div class="wp-block">
+      <span class="wp-label">网盘链接</span>
+      <div class="wp-link-row">
+        <span class="wp-link-text" id="wallpaperLink"></span>
+        <button class="wp-copy-btn" onclick="copyWpLink()"><svg class="ic"><use href="#i-copy"/></svg> 复制</button>
+      </div>
+    </div>
+    <div class="wp-block">
+      <span class="wp-label">提取码</span>
+      <div class="wp-link-row">
+        <span class="wp-code-text" id="wallpaperCode"></span>
+        <button class="wp-copy-btn" onclick="copyWpCode()"><svg class="ic"><use href="#i-copy"/></svg> 复制</button>
+      </div>
+    </div>
+    <p class="wp-steps">手机：复制链接 → 打开百度网盘 App，自动识别<br>电脑：点进网页版，输入提取码即可保存</p>
+    <p class="wp-foot">链接失效了？加店主 QQ <b id="wallpaperQq"></b> 补发 → <button class="link-btn" onclick="copyQQ()">复制QQ号</button> <button class="link-btn" onclick="closeModal('wallpaperModal');openQQ()">去联系</button></p>
   </div>
 </div>
 

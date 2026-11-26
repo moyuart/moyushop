@@ -76,7 +76,7 @@ function init(){
   setText('posterQqNum', SITE.qq||'3998694209');
   if(SITE.logo){ const l=document.getElementById('shopLogo'); if(l){ l.src=imgUrl(SITE.logo); l.onerror=function(){ const fb=imgFallback(this.src); if(fb){this.onerror=null;this.src=fb;} }; } }
   if(SITE.qr){ const q=document.getElementById('qqQr'); if(q){ q.src=imgUrl(SITE.qr); q.onerror=function(){ const fb=imgFallback(this.src); if(fb){this.onerror=null;this.src=fb;} }; } }
-  renderCatTabs(); updateFavCount(); renderGiftBanner(); renderGrid(true); setupInfiniteScroll();
+  renderCatTabs(); updateFavCount(); renderGiftBanner(); renderWallpaperBanner(); renderGrid(true); setupInfiniteScroll();
   window.addEventListener('hashchange', route);
   route();
 }
@@ -492,6 +492,34 @@ function renderGiftBanner(){
   if(thumbs) thumbs.innerHTML=pool.slice(0,4).map(g=>`<img src="${imgUrl(g.img||'')}" alt="" onerror="imgErr(this)">`).join('');
   box.hidden=false;
 }
+/* ---------- 免费壁纸福利（独立于赠品，赠品关闭时仍显示） ---------- */
+function welfareCfg(){ return SITE.welfare||{}; }
+function welfareOn(){ const w=welfareCfg(); return w.enabled!==false && !!w.link; }
+function renderWallpaperBanner(){
+  const box=document.getElementById('wallpaperBanner'); if(!box) return;
+  const w=welfareCfg();
+  if(!welfareOn()){ box.hidden=true; return; }
+  setText('wallpaperTitle', w.title||'免费壁纸');
+  setText('wallpaperSub', w.sub||'高清男角色 · 自取');
+  box.hidden=false;
+}
+function openWallpaper(){
+  const w=welfareCfg();
+  setText('wallpaperModalTitle', w.modalTitle||'高清男角色壁纸 · 免费领取');
+  setText('wallpaperSub2', w.modalSub||'不用下单，复制下面的链接保存即可');
+  setText('wallpaperLink', w.link||'');
+  setText('wallpaperCode', w.pwd||'');
+  setText('wallpaperQq', SITE.qq||'3998694209');
+  openModal('wallpaperModal');
+}
+async function copyToClipboard(text, okMsg){
+  try{ await navigator.clipboard.writeText(text); }
+  catch(e){ const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta); }
+  toast(okMsg);
+}
+function copyWpLink(){ const w=welfareCfg(); copyToClipboard(w.link||'', '网盘链接已复制，打开百度网盘 App 就能保存～'); }
+function copyWpCode(){ const w=welfareCfg(); copyToClipboard(w.pwd||'', '提取码 '+(w.pwd||'')+' 已复制～'); }
+
 function openGiftShow(){
   const pool=giftPool();
   const th=(SITE.promo&&SITE.promo.gift&&SITE.promo.gift.threshold)||0;
@@ -985,7 +1013,7 @@ document.addEventListener('keydown',e=>{
     if(e.key==='ArrowRight'){ e.preventDefault(); lbStep(1); return; }
   }
   if(e.key==='Escape'){
-    ['qqModal','unzipModal','posterModal','giftModal','catGuideModal','giftShowModal'].forEach(id=>{const el=document.getElementById(id);if(el&&!el.hidden)closeModal(id);});
+    ['qqModal','unzipModal','posterModal','giftModal','catGuideModal','giftShowModal','wallpaperModal'].forEach(id=>{const el=document.getElementById(id);if(el&&!el.hidden)closeModal(id);});
   }
 });
 
