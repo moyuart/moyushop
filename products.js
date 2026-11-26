@@ -1,5 +1,5 @@
-// 商品数据（本地后台导出 2026/11/24 10:30:51）
-window.PRODUCTS_VERSION="20261124103051";
+// 商品数据（本地后台导出 2026/11/26 20:52:23）
+window.PRODUCTS_VERSION="20261126205223";
 window.PRODUCTS = [
  {
   "id": 2,
@@ -24,35 +24,35 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "颜色:【1393+11】A款21-25.8",
-    "price": 25,
+    "price": 19,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/002_s01.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【907】B款22-24",
-    "price": 22,
+    "price": 16,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/002_s02.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【587】C款24-25.5",
-    "price": 20,
+    "price": 12,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/002_s03.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【899】D款24.8及之前",
-    "price": 10,
+    "price": 9,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/002_s04.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "【697】画师p24.8-25.3",
-    "price": 10,
+    "price": 8,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/002_s05.webp",
     "hasImg": true,
     "showImg": true
@@ -137,7 +137,7 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "默认款（详情咨询）",
-    "price": 14,
+    "price": 10,
     "img": "",
     "hasImg": false,
     "showImg": false
@@ -321,7 +321,7 @@ window.PRODUCTS = [
    },
    {
     "name": "颜色:【1492+10】拉克萨斯-妖尾",
-    "price": 18,
+    "price": 17,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/006_s03.webp",
     "hasImg": true,
     "showImg": true
@@ -686,7 +686,7 @@ window.PRODUCTS = [
    },
    {
     "name": "颜色:【1666+14】索隆佐罗-海贼王",
-    "price": 19,
+    "price": 18,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/008_s02.webp",
     "hasImg": true,
     "showImg": true
@@ -1088,7 +1088,7 @@ window.PRODUCTS = [
  {
   "id": 14,
   "goodsId": "1063184817855",
-  "title": "2月新DC美漫超人卡拉克高质量高清全彩精美同人收录",
+  "title": "836图+12视频DC美漫超人卡拉克高质量高清全彩精美同人收录",
   "detail": "bl向，拍下可免拼！详细介绍请看图文！\n！发纯子压缩包！需要解压！手机/电脑等请自备解压软件比如解压专家！\n其他动漫可见主页合集下/咨询店主\n！人工发货，时间：早9:00-晚22:30，上班族看到即回，如有回复/发货不及时请谅解orz",
   "price": 14,
   "cat": "角色包",
@@ -1104,7 +1104,7 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "默认款（详情咨询）",
-    "price": 14,
+    "price": 13,
     "img": "",
     "hasImg": false,
     "showImg": false
@@ -1214,14 +1214,14 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "颜色:【1408p】犬夜叉+少量钢牙",
-    "price": 16,
+    "price": 15,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/016_s01.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【417p】殺生丸",
-    "price": 10,
+    "price": 9,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/016_s02.webp",
     "hasImg": true,
     "showImg": true
@@ -1248,7 +1248,7 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "默认款（详情咨询）",
-    "price": 10,
+    "price": 8,
     "img": "",
     "hasImg": false,
     "showImg": false
@@ -1260,7 +1260,7 @@ window.PRODUCTS = [
  {
   "id": 18,
   "goodsId": "1061378559208",
-  "title": "画师O蓝色监狱yuan神崩铁塞尔达刀剑神域等",
+  "title": "1120图+19动画画师O蓝色监狱yuan神崩铁塞尔达刀剑神域等",
   "detail": "特点：全彩图包，内含动态！瑕疵少, 风格如图偏少年感，多单人，很多尝试（风格/形式等），\n拍下不包即时更新，不定时更新\n日期：24年7-10月\n数量：1139（19动）\n大小：2压缩包，2.3g+2.4g\n！人工发货，时间：早9:00-晚22:30，上班族看到即回，如有回复/发货不及时请谅解orz",
   "price": 16,
   "cat": "画师包",
@@ -1273,7 +1273,7 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "默认款（详情咨询）",
-    "price": 16,
+    "price": 12,
     "img": "",
     "hasImg": false,
     "showImg": false
@@ -1387,7 +1387,7 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "颜色:【139】A款24.12-25.07",
-    "price": 8,
+    "price": 7,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/020_s01.webp",
     "hasImg": true,
     "showImg": true
@@ -1431,28 +1431,28 @@ window.PRODUCTS = [
    {
     "name": "颜色:【1312p】A款24.03-06",
     "price": 15,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/021_s02.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/021_s01.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【521p】B款",
     "price": 10,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/021_s03.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/021_s03_20261126-202112-451-1.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【80】C款白厄单人",
     "price": 8,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/021_s04.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/021_s04_20261126-202155-979-2.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【240】D款24.08前",
     "price": 8,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/021_s05.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/021_s05_20261126-202232-519-4.webp",
     "hasImg": true,
     "showImg": true
    },
@@ -1482,7 +1482,7 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "默认款（详情咨询）",
-    "price": 13,
+    "price": 12,
     "img": "",
     "hasImg": false,
     "showImg": false
@@ -1622,7 +1622,7 @@ window.PRODUCTS = [
  {
   "id": 24,
   "goodsId": "1061377087963",
-  "title": "bl向同一画师高质量全彩英字长条漫",
+  "title": "1393p+11动画bl向同一画师高质量全彩英字长条漫",
   "detail": "！详细介绍请左滑看图文！写的很清楚！\n拍下默认已看！\n！特别注意：人物都是随机混合的！不支持拍封面某单一人物！不支持拍封面某单一人物！\n！按赞助日期打包便宜出，喜欢这个画风的拍！\n其他类似画师可见主页画师分类下/咨询店主！\n！人工发货，时间：早9:00-晚22:30，上班族看到即回，如有回复/发货不及时请谅解orz",
   "price": 24,
   "cat": "画师包",
@@ -1641,7 +1641,7 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "默认款（详情咨询）",
-    "price": 24,
+    "price": 19,
     "img": "",
     "hasImg": false,
     "showImg": false
@@ -1699,7 +1699,7 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "默认款（详情咨询）",
-    "price": 19,
+    "price": 18,
     "img": "",
     "hasImg": false,
     "showImg": false
@@ -1729,7 +1729,7 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "默认款（详情咨询）",
-    "price": 12,
+    "price": 10,
     "img": "",
     "hasImg": false,
     "showImg": false
@@ -1876,7 +1876,7 @@ window.PRODUCTS = [
  {
   "id": 30,
   "goodsId": "1063182649978",
-  "title": "2d风/bl向高质量高清精品同人动作视频素材",
+  "title": "170部2d风/bl向高质量高清精品同人动作视频素材",
   "detail": "！详细介绍请左滑看图文！写的很清楚！\n拍下默认已看！\n！特别注意：人物都是随机混合的！不支持拍封面某单一人物！不支持拍封面某单一人物！\n！按赞助日期打包便宜出，喜欢这个画风的拍！\n其他类似画师可见主页画师分类下/咨询店主！\n！人工发货，时间：早9:00-晚22:30，上班族看到即回，如有回复/发货不及时请谅解orz",
   "price": 25,
   "cat": "3d动作包",
@@ -1893,7 +1893,7 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "默认款（详情咨询）",
-    "price": 25,
+    "price": 20,
     "img": "",
     "hasImg": false,
     "showImg": false
@@ -2261,7 +2261,7 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "默认款（详情咨询）",
-    "price": 20,
+    "price": 18,
     "img": "",
     "hasImg": false,
     "showImg": false
@@ -2421,20 +2421,20 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "颜色:【170】A款21.09-25.08",
-    "price": 23,
+    "price": 20,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/036_s01.webp",
     "hasImg": false,
     "showImg": false
    },
    {
-    "name": "颜色:【28+82p】B款无声24.5-12",
+    "name": "颜色:【82p+28】B款无声24.5-12",
     "price": 15,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/036_s02.webp",
     "hasImg": false,
     "showImg": false
    },
    {
-    "name": "颜色:【15+100p】B款25.3+5-11",
+    "name": "颜色:【100p+15】B款25.3+5-11",
     "price": 15,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/036_s03.webp",
     "hasImg": false,
@@ -2562,14 +2562,14 @@ window.PRODUCTS = [
  {
   "id": 38,
   "goodsId": "1061375411037",
-  "title": "露营游戏全10高质量高清全彩同人",
+  "title": "露营伙伴游戏全10高质量高清全彩同人",
   "detail": "设计图源文件\n！发纯子压缩包！需要解压！手机上请自备解压软件比如解压专家！\n简介：详细介绍请看图文！bl向,如图包含不同动作及表情，不止封面！\n其他游戏可见主页上新专题下/咨询店主\n！人工发货，时间：早9:00-晚22:30，上班族看到即回，如有回复/发货不及时请谅解orz",
   "price": 1,
   "cat": "角色包",
-  "cover": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/thumb/038_m04.webp",
+  "cover": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/thumb/038_m01.webp",
   "images": [
-   "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/038_m04.webp",
    "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/038_m01.webp",
+   "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/038_m04.webp",
    "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/038_m02.webp",
    "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/038_m03.webp",
    "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/038_m05.webp",
@@ -2659,15 +2659,15 @@ window.PRODUCTS = [
    {
     "name": "颜色:【40个】Aiden艾登英文cg视频",
     "price": 13,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/038_s12.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/038_s12_20261126-203737-782-8.webp",
     "hasImg": true,
     "showImg": false
    },
    {
     "name": "颜色:【14个】Goro五郎英文cg视频",
     "price": 7,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/038_s13.webp",
-    "hasImg": false,
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/038_s13_20261126-203740-744-9.webp",
+    "hasImg": true,
     "showImg": false
    }
   ],
@@ -2930,7 +2930,7 @@ window.PRODUCTS = [
    },
    {
     "name": "颜色:【1271p】E款24.10-9",
-    "price": 14,
+    "price": 15,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/044_s03.webp",
     "hasImg": false,
     "showImg": false
@@ -3077,7 +3077,7 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "默认款（详情咨询）",
-    "price": 10,
+    "price": 6,
     "img": "",
     "hasImg": false,
     "showImg": false
@@ -3439,14 +3439,14 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "默认款（详情咨询）",
-    "price": 19,
+    "price": 16,
     "img": "",
     "hasImg": false,
     "showImg": false
    }
   ],
   "isNew": false,
-  "isDefaultSpec": true
+  "isDefaultSpec": false
  },
  {
   "id": 53,
@@ -3501,7 +3501,7 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "默认款（详情咨询）",
-    "price": 13,
+    "price": 12,
     "img": "",
     "hasImg": false,
     "showImg": false
@@ -3564,7 +3564,7 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "默认款（详情咨询）",
-    "price": 12,
+    "price": 11,
     "img": "",
     "hasImg": false,
     "showImg": false
@@ -3598,21 +3598,21 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "颜色:【375p】规格一24.5-25.5",
-    "price": 11,
+    "price": 10,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/057_s01.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【157p】规格二25.09新",
-    "price": 7,
+    "price": 5,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/057_s02.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【446p】规格三24.08-25.02",
-    "price": 9,
+    "price": 6,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/057_s03.webp",
     "hasImg": true,
     "showImg": true
@@ -3633,7 +3633,7 @@ window.PRODUCTS = [
    },
    {
     "name": "颜色:【970+9】规格四24年全",
-    "price": 13,
+    "price": 12,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/057_s06.webp",
     "hasImg": true,
     "showImg": true
@@ -3673,21 +3673,21 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "颜色:【305】全部",
-    "price": 17,
+    "price": 16,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/058_s01.webp",
     "hasImg": false,
     "showImg": false
    },
    {
     "name": "颜色:【34】鸣雏佐樱",
-    "price": 5,
+    "price": 6,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/058_s02.webp",
     "hasImg": false,
     "showImg": false
    },
    {
     "name": "颜色:【271】bl全男",
-    "price": 15,
+    "price": 13,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/058_s03.webp",
     "hasImg": false,
     "showImg": false
@@ -4194,14 +4194,14 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "颜色:【59部】3d动画f25.07-09",
-    "price": 9,
+    "price": 8,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/063_s01.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【118部】3d动画f25.02-07",
-    "price": 18,
+    "price": 17,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/063_s02.webp",
     "hasImg": true,
     "showImg": true
@@ -4257,49 +4257,49 @@ window.PRODUCTS = [
    {
     "name": "颜色:【1103】B款24.12-25.1",
     "price": 14,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/064_s05.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/064_s04.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【1316】B款25.02-04",
     "price": 16,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/064_s06.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/064_s04.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【2242p】C款25年6-9月",
     "price": 24,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/064_s07.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/064_s05.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【2304p】C款25年3-6月",
     "price": 25,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/064_s08.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/064_s06.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【899】C款25.01及之前",
     "price": 10,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/064_s09.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/064_s07.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【1184】C款25.02-03",
     "price": 13,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/064_s10.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/064_s07.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【1735p】D款25.03-05",
     "price": 18,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/064_s11.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/064_s08.webp",
     "hasImg": true,
     "showImg": true
    },
@@ -4347,7 +4347,7 @@ window.PRODUCTS = [
    },
    {
     "name": "颜色:【1593】G款25.04-10",
-    "price": 17,
+    "price": 18,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/064_s18.webp",
     "hasImg": true,
     "showImg": true
@@ -4648,14 +4648,14 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "颜色:【23】冲神",
-    "price": 6,
+    "price": 3,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/068_s01.webp",
     "hasImg": false,
     "showImg": false
    },
    {
     "name": "颜色:【183】银魂all男",
-    "price": 13,
+    "price": 12,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/068_s02.webp",
     "hasImg": false,
     "showImg": false
@@ -4680,7 +4680,7 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "默认款（详情咨询）",
-    "price": 16,
+    "price": 13,
     "img": "",
     "hasImg": false,
     "showImg": false
@@ -4706,28 +4706,28 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "颜色:【403】全3包",
-    "price": 18,
+    "price": 16,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/070_s01.webp",
     "hasImg": false,
     "showImg": false
    },
    {
     "name": "颜色:【156】多赤零少零赤组合",
-    "price": 13,
+    "price": 12,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/070_s02.webp",
     "hasImg": false,
     "showImg": false
    },
    {
     "name": "颜色:【166】all男组合本",
-    "price": 13,
+    "price": 12,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/070_s03.webp",
     "hasImg": false,
     "showImg": false
    },
    {
     "name": "颜色:【81】柯哀新兰等bg本",
-    "price": 10,
+    "price": 8,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/070_s04.webp",
     "hasImg": false,
     "showImg": false
@@ -4754,7 +4754,7 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "默认款（详情咨询）",
-    "price": 15,
+    "price": 12,
     "img": "",
     "hasImg": false,
     "showImg": false
@@ -4779,7 +4779,7 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "默认款（详情咨询）",
-    "price": 18,
+    "price": 16,
     "img": "",
     "hasImg": false,
     "showImg": false
@@ -4806,7 +4806,7 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "默认款（详情咨询）",
-    "price": 13,
+    "price": 11,
     "img": "",
     "hasImg": false,
     "showImg": false
@@ -4970,7 +4970,7 @@ window.PRODUCTS = [
    },
    {
     "name": "颜色:【1492+10】拉克萨斯-妖尾",
-    "price": 18,
+    "price": 17,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s05.webp",
     "hasImg": true,
     "showImg": true
@@ -4991,14 +4991,14 @@ window.PRODUCTS = [
    },
    {
     "name": "颜色:【1666+14】索隆/佐罗-海贼王",
-    "price": 19,
+    "price": 18,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s08.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【836+12】超人克拉克-美漫",
-    "price": 14,
+    "price": 13,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s09.webp",
     "hasImg": true,
     "showImg": true
@@ -5019,21 +5019,21 @@ window.PRODUCTS = [
    },
    {
     "name": "颜色:【1408p】犬夜叉+少量钢牙-犬",
-    "price": 16,
+    "price": 15,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s12.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【417p】殺生丸-犬",
-    "price": 10,
+    "price": 9,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s13.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【1311+6】程肖宇-独自升级",
-    "price": 16,
+    "price": 15,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/076_s14.webp",
     "hasImg": true,
     "showImg": true
@@ -5610,21 +5610,21 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "颜色:【0-137话】全2季赠特典",
-    "price": 20,
+    "price": 16,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/086_s01.webp",
     "hasImg": false,
     "showImg": false
    },
    {
     "name": "颜色:【0-45话】第一季赠特典",
-    "price": 10,
+    "price": 8,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/086_s02.webp",
     "hasImg": false,
     "showImg": false
    },
    {
     "name": "颜色:【46-137话】第二季赠特典",
-    "price": 17,
+    "price": 10,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/086_s03.webp",
     "hasImg": false,
     "showImg": false
@@ -5650,14 +5650,14 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "颜色:【66本】2025全新男cp合集",
-    "price": 13,
+    "price": 9,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/087_s01.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【47本】2024全男cp合集",
-    "price": 10,
+    "price": 6,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/087_s02.webp",
     "hasImg": true,
     "showImg": true
@@ -5728,21 +5728,21 @@ window.PRODUCTS = [
   "specs": [
    {
     "name": "颜色:【252本】全汉化全男cp组合",
-    "price": 17,
+    "price": 16,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/089_s01.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【109】空相关组合",
-    "price": 12,
+    "price": 11,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/089_s02.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【78】全汉化钟离相关组合",
-    "price": 10,
+    "price": 8,
     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/089_s03.webp",
     "hasImg": true,
     "showImg": true
@@ -5753,15 +5753,16 @@ window.PRODUCTS = [
  {
   "id": 90,
   "goodsId": "1038288765702",
-  "title": "露营少年教官季游戏全4高质量高清全彩同",
+  "title": "露营伙伴教官季游戏全4高质量高清全彩同",
   "detail": "人设计图源文件\n！发子压缩包！需要解压！请自备解压软件比如解压专家！\n简介：详细介绍请看图文！bl向,如图包含不同动作及表情，不止封面！\n其他游戏可见主页上新专题下/咨询店主\n！人工发货，时间：早9:00-晚23:00，上班族看到即回，如有回复/发货不及时请谅解orz",
   "price": 7,
   "cat": "角色包",
-  "cover": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/thumb/090_m04.webp",
+  "cover": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/thumb/090_m10_20261126-203707-398-7.webp",
   "images": [
+   "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/090_m10_20261126-203707-398-7.webp",
+   "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/090_m02.webp",
    "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/090_m04.webp",
    "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/090_m01.webp",
-   "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/090_m02.webp",
    "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/090_m03.webp",
    "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/090_m05.webp",
    "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/090_m06.webp",
@@ -5773,14 +5774,14 @@ window.PRODUCTS = [
    {
     "name": "颜色:【774+6】厨师长艾登・弗林",
     "price": 13,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/090_s01.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/090_s01_20261126-203631-649-5.webp",
     "hasImg": true,
     "showImg": true
    },
    {
     "name": "颜色:【861】校长五郎・野村",
     "price": 13,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/090_s02.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/090_s02_20261126-203638-654-6.webp",
     "hasImg": true,
     "showImg": true
    },
