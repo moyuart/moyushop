@@ -1,5 +1,5 @@
-// 商品数据（本地后台导出 2026/11/26 21:58:09）
-window.PRODUCTS_VERSION="20261126215809";
+// 商品数据（本地后台导出 2026/11/26 23:00:41）
+window.PRODUCTS_VERSION="20261126230041";
 window.PRODUCTS = [
  {
   "id": 2,
@@ -687,7 +687,7 @@ window.PRODUCTS = [
    {
     "name": "颜色:【1666+14】索隆佐罗-海贼王",
     "price": 18,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/008_s02.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/008_s02_20261126-230035-556-8.webp",
     "hasImg": true,
     "showImg": true
    }
@@ -905,7 +905,7 @@ window.PRODUCTS = [
    {
     "name": "颜色:【414+5】丹恒饮月",
     "price": 10,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/011_s06.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/011_s09_20261126-225708-880-2.webp",
     "hasImg": true,
     "showImg": true
    },
@@ -919,7 +919,7 @@ window.PRODUCTS = [
    {
     "name": "颜色:【127+7】刃",
     "price": 7,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/011_s08.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/011_s11_20261126-225659-808-1.webp",
     "hasImg": true,
     "showImg": true
    },
@@ -2190,7 +2190,7 @@ window.PRODUCTS = [
    {
     "name": "颜色:【389+2v+2a】忌炎",
     "price": 10,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/033_s05.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/033_s05_20261126-225915-925-4.webp",
     "hasImg": true,
     "showImg": true
    },
@@ -2218,7 +2218,7 @@ window.PRODUCTS = [
    {
     "name": "颜色:【352+2】卡卡罗",
     "price": 8,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/033_s09.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/033_s09_20261126-225851-574-3.webp",
     "hasImg": true,
     "showImg": true
    },
@@ -3826,7 +3826,7 @@ window.PRODUCTS = [
    {
     "name": "颜色:【636+12】公爵莱欧",
     "price": 12,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/060_s07.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/060_s07_20261126-225937-076-6.webp",
     "hasImg": true,
     "showImg": true
    },
@@ -3854,7 +3854,7 @@ window.PRODUCTS = [
    {
     "name": "颜色:【636+6】艾尔海森",
     "price": 11,
-    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/060_s11.webp",
+    "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/full/060_s11_20261126-225944-653-7.webp",
     "hasImg": true,
     "showImg": true
    },
