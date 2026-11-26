@@ -1,1 +1,96 @@
-Ly8g5bqX6ZO66YWN572u77yI5pys5Zyw5ZCO5Y+w5a+85Ye6IDIwMjYvMTEvMjMgMTg6MDQ6MzPvvIkKd2luZG93LlNJVEUgPSB7CiAic2hvcE5hbWUiOiAi5aKo6bG854ix54KW6IKJIiwKICJzbG9nYW4iOiAi5LqM5qyh5YWD6auY5riF5Zu+5YyFIMK3IOWQjOS6uuaPkueUu+e0oOadkCIsCiAicXEiOiAiMzk5ODY5NDIwOSIsCiAicXIiOiAiaHR0cHM6Ly9wdWItZGYyMGJkZjZkMDUzNDZlZjhlMzczZDFmODFkNDNkMzAucjIuZGV2L2d1aWRlL3FxJUU0JUJBJThDJUU3JUJCJUI0JUU3JUEwJTgxLndlYnAiLAogIm5vdGljZSI6ICLpl7LpsbzlkIzlkI3lupflvIDlvKDllabvvZ4g6aaW5qyh6LSt5Lmw5YWI55yL6aG25LiK55qE6YCJ5YyF5ZKM6Kej5Y6L5pWZ56iL44CCIiwKICJ1cGRhdGVEYXRlIjogIjIwMjYtMTEtMjMiLAogInVuemlwIjogewogICJwYyI6ICJodHRwczovL3B1Yi1kZjIwYmRmNmQwNTM0NmVmOGUzNzNkMWY4MWQ0M2QzMC5yMi5kZXYvZ3VpZGUvJUU4JUE3JUEzJUU1JThFJThCJUU2JTk1JTk5JUU3JUE4JThCLSVFNyU5NCVCNSVFOCU4NCU5MS53ZWJwIiwKICAibW9iaWxlIjogImh0dHBzOi8vcHViLWRmMjBiZGY2ZDA1MzQ2ZWY4ZTM3M2QxZjgxZDQzZDMwLnIyLmRldi9ndWlkZS8lRTglQTclQTMlRTUlOEUlOEIlRTYlOTUlOTklRTclQTglOEItJUU2JTg5JThCJUU2JTlDJUJBLndlYnAiCiB9LAogInNwZWNJbWdFbmFibGVkIjogdHJ1ZSwKICJpbWdEb21haW4iOiB7CiAgIm1vZGUiOiAibmV3IiwKICAib2xkIjogImh0dHBzOi8vcHViLWRmMjBiZGY2ZDA1MzQ2ZWY4ZTM3M2QxZjgxZDQzZDMwLnIyLmRldiIsCiAgIm5ldyI6ICJodHRwczovL2ltZy5tb3l1YWlkdW5yb3UuZHBkbnMub3JnIgogfSwKICJsb2dvIjogImh0dHBzOi8vcHViLWRmMjBiZGY2ZDA1MzQ2ZWY4ZTM3M2QxZjgxZDQzZDMwLnIyLmRldi9sb2dvLndlYnAiLAogImNhdHMiOiBbCiAgIuWFqOmDqCIsCiAgIuinkuiJsuWMhSIsCiAgIueUu+W4iOWMhSIsCiAgIjNk5Yqo5L2c5YyFIiwKICAi5pys5a2QIgogXSwKICJjYXRHdWlkZSI6IHsKICAi6KeS6Imy5YyFIjogIuaMkeS4gOS4quinkuiJsu+8jOWGheWuueaYr+i/meS4quinkuiJsueahOWkmuenjeeUu+mjjuWbviArIOinhumikS/liqjlm77jgILpgILlkIjorqTlh4bmn5DkuKrkurrnianjgIHkuI3mjJHnlLvpo47nmoTkubDlrrbjgIIiLAogICLnlLvluIjljIUiOiAi5oyR5LiA5Liq55S75biI77yM55S76aOO5Zu65a6a57uf5LiA77yM5L2G55S76YeM55qE5Lq654mp5piv5re35pCt55qE44CB5LiN6IO95oyH5a6a44CC6YCC5ZCI5Zac5qyi5p+Q5L2N55S75biI6aOO5qC855qE5Lmw5a6244CCIiwKICAiM2TliqjkvZzljIUiOiAi5oyR5LiA5Liq55S75biI77yM5YaF5a655piv6L+Z5Liq55S75biI6aOO5qC855qEIDNELzJEIOW7uuaooeinhumikeaIluWKqOWbvu+8iOS8muWKqOeahO+8ieOAgiIsCiAgIuacrOWtkCI6ICLmjJHkuIDkuKrmnKzlrZDvvIzlhoXlrrnmmK/mnInliafmg4XjgIHmnInmloflrZfnmoTmvKvnlLvvvIzpu5jorqTkuK3lpJbmloflrZfmt7flkIjjgIIiCiB9LAogInNwZWNUaXAiOiB7CiAgIuinkuiJsuWMhSI6ICLop4TmoLzph4znmoTjgJA1OTLjgJHlsLHmmK/ov5nkuKrop5LoibLnmoTlm77niYflvKDmlbDvvIg1OTLlvKDvvInvvJvlpoLmnpzlhpnmiJDjgJA1OTIrOOOAke+8jCvlj7flkI7pnaLnmoQ45piv6ZmE5bim55qE6KeG6aKRL+WKqOWbvi/pn7PpopHmlbDph4/jgILmi6zlj7flkI7pnaLnmoTmmK/op5LoibLlkI3lrZfjgIIiLAogICLnlLvluIjljIUiOiAi6KeE5qC86YeM44CQMTM5MysxMeOAkeWJjemdoueahDEzOTPmmK/lm77niYflvKDmlbDvvIwr5Y+35ZCO55qEMTHmmK/liqjlm74v6KeG6aKR5pWw6YeP77yb5ZCO6Z2i44CMQeasvjIxLTI1LjjjgI3mmK/ov5nkvY3nlLvluIjnmoTliJvkvZzml7bpl7TmrrXvvIgyMeW5tDjmnIjvvZ4yNeW5tDjmnIjvvInjgIIiLAogICIzZOWKqOS9nOWMhSI6ICLop4TmoLzph4zjgJA4MnArMjjjgJHliY3pnaLnmoQ4MnDmmK/lm77niYcv5bCB6Z2i5byg5pWw77yMK+WPt+eahDI45piv6KeG6aKRL+WKqOWbvuaVsOmHj+OAguWQjumdouOAjDIxLTI1LjjjgI3mmK/ov5nkvY3nlLvluIjnmoTliJvkvZzml7bpl7TmrrXvvIgyMeW5tDjmnIjvvZ4yNeW5tDjmnIjvvIkiLAogICLmnKzlrZAiOiAi6KeE5qC86YeM55qE5pWw5a2X5bCx5piv5pys5pWw77yM5q+U5aaC44CQNDHmnKzjgJHlsLHmmK80MeacrO+8m+agh+S6huOAjOWFqOaxieWMluOAjeeahOaYr+W3sue7j+e/u+ivkeaIkOS4reaWh+eahOOAgiIsCiAgIl9jb21tb24iOiAi5qCH552A44CM6buY6K6k5qy+44CN55qE77yM54K56L+b5Y6755u05o6l6Zeu5bqX5Li75Y2z5Y+v44CCIgogfSwKICJwcm9tbyI6IHsKICAicXR5RGlzY291bnRzIjogWwogICB7CiAgICAibWluIjogMywKICAgICJvZmYiOiAwLjksCiAgICAiZW5hYmxlZCI6IHRydWUsCiAgICAibGFiZWwiOiAi5ruhM+S7tjnmipgiCiAgIH0sCiAgIHsKICAgICJtaW4iOiA1LAogICAgIm9mZiI6IDAuOCwKICAgICJlbmFibGVkIjogZmFsc2UsCiAgICAibGFiZWwiOiAi5ruhNeS7tjjmipgiCiAgIH0KICBdLAogICJnaWZ0IjogewogICAiZW5hYmxlZCI6IHRydWUsCiAgICJ0aHJlc2hvbGQiOiA1MCwKICAgInBvb2wiOiBbCiAgICB7CiAgICAgImlkIjogImcxIiwKICAgICAibmFtZSI6ICLjgJA5NeW8oOOAkei1oOWTgeS4gO+8iOS7u+mAieWFtuS4gO+8iSIsCiAgICAgImltZyI6ICJodHRwczovL3B1Yi1kZjIwYmRmNmQwNTM0NmVmOGUzNzNkMWY4MWQ0M2QzMC5yMi5kZXYvZ2lmdC9naWZ0X2cxLndlYnAiLAogICAgICJxdHkiOiA5OQogICAgfSwKICAgIHsKICAgICAiaWQiOiAiZ213c3A5bGI2XzEiLAogICAgICJuYW1lIjogIuOAkDE0MuW8oOOAkei1oOWTgeS6jO+8iOS7u+mAieWFtuS4gO+8iSIsCiAgICAgImltZyI6ICJodHRwczovL3B1Yi1kZjIwYmRmNmQwNTM0NmVmOGUzNzNkMWY4MWQ0M2QzMC5yMi5kZXYvZ2lmdC9naWZ0X2dtd3NwOWxiNl8xLndlYnAiLAogICAgICJxdHkiOiA5OQogICAgfSwKICAgIHsKICAgICAiaWQiOiAiZ213c3BhaWJvXzIiLAogICAgICJuYW1lIjogIuOAkDQxMuW8oOOAkei1oOWTgeS4ie+8iOS7u+mAieWFtuS4gO+8iSIsCiAgICAgImltZyI6ICJodHRwczovL3B1Yi1kZjIwYmRmNmQwNTM0NmVmOGUzNzNkMWY4MWQ0M2QzMC5yMi5kZXYvZ2lmdC9naWZ0X2dtd3NwYWlib18yLndlYnAiLAogICAgICJxdHkiOiA5OQogICAgfSwKICAgIHsKICAgICAiaWQiOiAiZ213c3BiOGd0XzMiLAogICAgICJuYW1lIjogIuOAkDU0OOW8oOOAkei1oOWTgeWbm++8iOS7u+mAieWFtuS4gO+8iSIsCiAgICAgImltZyI6ICJodHRwczovL3B1Yi1kZjIwYmRmNmQwNTM0NmVmOGUzNzNkMWY4MWQ0M2QzMC5yMi5kZXYvZ2lmdC9naWZ0X2dtd3NwYjhndF8zLndlYnAiLAogICAgICJxdHkiOiA5OQogICAgfQogICBdCiAgfQogfSwKICJ3ZWxmYXJlIjogewogICJlbmFibGVkIjogdHJ1ZSwKICAidGl0bGUiOiAi5YWN6LS55aOB57q4IiwKICAic3ViIjogIumrmOa4heeUt+inkuiJsiDCtyDoh6rlj5YiLAogICJtb2RhbFRpdGxlIjogIumrmOa4heeUt+inkuiJsuWjgee6uCDCtyDlhY3otLnpooblj5YiLAogICJtb2RhbFN1YiI6ICLkuI3nlKjkuIvljZXvvIzlpI3liLbkuIvpnaLnmoTpk77mjqXkv53lrZjljbPlj68iLAogICJsaW5rIjogImh0dHBzOi8vcGFuLmJhaWR1LmNvbS9zLzFoSnFyT1NaLWVzQTFJM3B3THVERkN3IiwKICAicHdkIjogInMzemgiCiB9LAogInIyYmFzZSI6ICJodHRwczovL3B1Yi1kZjIwYmRmNmQwNTM0NmVmOGUzNzNkMWY4MWQ0M2QzMC5yMi5kZXYiCn07Cg==
+// 店铺配置（本地后台导出 2026/11/23 18:04:33）
+window.SITE = {
+ "shopName": "墨鱼爱炖肉",
+ "slogan": "二次元高清图包 · 同人插画素材",
+ "qq": "3998694209",
+ "qr": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/guide/qq%E4%BA%8C%E7%BB%B4%E7%A0%81.webp",
+ "notice": "闲鱼同名店开张啦～ 首次购买先看顶上的选包和解压教程。",
+ "updateDate": "2026-11-23",
+ "unzip": {
+  "pc": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/guide/%E8%A7%A3%E5%8E%8B%E6%95%99%E7%A8%8B-%E7%94%B5%E8%84%91.webp",
+  "mobile": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/guide/%E8%A7%A3%E5%8E%8B%E6%95%99%E7%A8%8B-%E6%89%8B%E6%9C%BA.webp"
+ },
+ "specImgEnabled": true,
+ "imgDomain": {
+  "mode": "new",
+  "old": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev",
+  "new": "https://img.moyuaidunrou.dpdns.org"
+ },
+ "logo": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/logo.webp",
+ "cats": [
+  "全部",
+  "角色包",
+  "画师包",
+  "3d动作包",
+  "本子"
+ ],
+ "catGuide": {
+  "角色包": "挑一个角色，内容是这个角色的多种画风图 + 视频/动图。适合认准某个人物、不挑画风的买家。",
+  "画师包": "挑一个画师，画风固定统一，但画里的人物是混搭的、不能指定。适合喜欢某位画师风格的买家。",
+  "3d动作包": "挑一个画师，内容是这个画师风格的 3D/2D 建模视频或动图（会动的）。",
+  "本子": "挑一个本子，内容是有剧情、有文字的漫画，默认中外文字混合。"
+ },
+ "specTip": {
+  "角色包": "规格里的【592】就是这个角色的图片张数（592张）；如果写成【592+8】，+号后面的8是附带的视频/动图/音频数量。括号后面的是角色名字。",
+  "画师包": "规格里【1393+11】前面的1393是图片张数，+号后的11是动图/视频数量；后面「A款21-25.8」是这位画师的创作时间段（21年8月～25年8月）。",
+  "3d动作包": "规格里【82p+28】前面的82p是图片/封面张数，+号的28是视频/动图数量。后面「21-25.8」是这位画师的创作时间段（21年8月～25年8月）",
+  "本子": "规格里的数字就是本数，比如【41本】就是41本；标了「全汉化」的是已经翻译成中文的。",
+  "_common": "标着「默认款」的，点进去直接问店主即可。"
+ },
+ "promo": {
+  "qtyDiscounts": [
+   {
+    "min": 3,
+    "off": 0.9,
+    "enabled": true,
+    "label": "满3件9折"
+   },
+   {
+    "min": 5,
+    "off": 0.8,
+    "enabled": false,
+    "label": "满5件8折"
+   }
+  ],
+  "gift": {
+   "enabled": true,
+   "threshold": 50,
+   "pool": [
+    {
+     "id": "g1",
+     "name": "【95张】赠品一（任选其一）",
+     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/gift/gift_g1.webp",
+     "qty": 99
+    },
+    {
+     "id": "gmwsp9lb6_1",
+     "name": "【142张】赠品二（任选其一）",
+     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/gift/gift_gmwsp9lb6_1.webp",
+     "qty": 99
+    },
+    {
+     "id": "gmwspaibo_2",
+     "name": "【412张】赠品三（任选其一）",
+     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/gift/gift_gmwspaibo_2.webp",
+     "qty": 99
+    },
+    {
+     "id": "gmwspb8gt_3",
+     "name": "【548张】赠品四（任选其一）",
+     "img": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev/gift/gift_gmwspb8gt_3.webp",
+     "qty": 99
+    }
+   ]
+  }
+ },
+ "welfare": {
+  "enabled": true,
+  "title": "免费壁纸",
+  "sub": "高清男角色 · 自取",
+  "modalTitle": "高清男角色壁纸 · 免费领取",
+  "modalSub": "不用下单，复制下面的链接保存即可",
+  "link": "https://pan.baidu.com/s/1hJqrOSZ-esA1I3pwLuDFCw",
+  "pwd": "s3zh"
+ },
+ "r2base": "https://pub-df20bdf6d05346ef8e373d1f81d43d30.r2.dev"
+};
