@@ -1069,8 +1069,20 @@ document.addEventListener('keydown',e=>{
     if(e.key==='ArrowRight'){ e.preventDefault(); lbStep(1); return; }
   }
   if(e.key==='Escape'){
-    ['qqModal','unzipModal','posterModal','giftModal','catGuideModal','giftShowModal','wallpaperModal'].forEach(id=>{const el=document.getElementById(id);if(el&&!el.hidden)closeModal(id);});
+    ['qqModal','unzipModal','posterModal','giftModal','catGuideModal','giftShowModal','wallpaperModal','buyGuideModal'].forEach(id=>{const el=document.getElementById(id);if(el&&!el.hidden)closeModal(id);});
   }
 });
 
+/* PC 端快速回顶部：滚动超过 400px 显示，点击平滑回顶 */
+function backToTop(){
+  try{ window.scrollTo({top:0,behavior:'smooth'}); }
+  catch(e){ window.scrollTo(0,0); }
+}
+function updateBackToTop(){
+  const b=document.getElementById('backToTop');
+  if(b) b.classList.toggle('show', (window.scrollY||document.documentElement.scrollTop||0)>400);
+}
+
 init();
+window.addEventListener('scroll', updateBackToTop, {passive:true});
+updateBackToTop();
