@@ -10,6 +10,29 @@ let posterPages = [], posterIdx = 0;
 let unzipKind = 'pc';
 let visibleCount = 40; // 首屏渐进加载：先显示 40 款
 
+/* ---------- 渠道来源追踪：专属短链 ?ch=xxx → 记住来源 → 咨询图印水印 ----------
+   买家从哪个平台的短链进来，就把来源记进 localStorage，生成咨询图时印右上角。
+   店主看到图上的「来源：B站」等字样即可记台账，买家无感、无需配合。 */
+const CH_NAME={bili:'B站',wb:'微博',bjh:'百家号',db:'豆瓣',tt:'头条',tb:'贴吧',xy:'闲鱼',qq:'QQ'};
+(function(){
+  try{
+    const m=location.search.match(/[?&]ch=([a-z0-9_-]+)/i);
+    if(m && CH_NAME[m[1].toLowerCase()]) localStorage.setItem('moyu_ch',m[1].toLowerCase());
+  }catch(e){}
+})();
+function channelName(){ try{ const c=localStorage.getItem('moyu_ch'); return c?CH_NAME[c]:''; }catch(e){ return ''; } }
+function drawChannelBadge(ctx,x,y,fontPx){
+  const t=channelName(); if(!t) return;
+  ctx.save();
+  ctx.font='bold '+fontPx+'px sans-serif';
+  const label='来源：'+t, w=ctx.measureText(label).width+22;
+  ctx.fillStyle='rgba(255,255,255,.92)';
+  roundRect(ctx,x-w,y-fontPx,w,fontPx+12,8); ctx.fill();
+  ctx.fillStyle='#5B4BC4';
+  ctx.fillText(label,x-w+11,y+2);
+  ctx.restore();
+}
+
 /* ---------- 图片域名切换 + 失败自动兜底 ----------
    原始数据里的图片 URL 全部是旧域名 r2.dev，一个字都不改。
    展示时由 imgUrl() 按配置决定是否换成自定义域名；
@@ -714,6 +737,7 @@ async function drawPoster(items, order){
   ctx.fillStyle='#5B4BC4'; ctx.fillRect(0,0,W,headerH);
   ctx.fillStyle='#fff'; ctx.font='bold 40px sans-serif'; ctx.fillText(SITE.shopName||'墨鱼铺子',pad,70);
   ctx.font='24px sans-serif'; ctx.fillText('我想咨询这几款（见图选规格）',pad,116);
+  drawChannelBadge(ctx,W-pad,72,20); // 右上角来源水印（仅从专属短链进入时显示）
   let y=headerH+22;
   for(const it of items){
     ctx.fillStyle='#fff'; roundRect(ctx,pad-8,y-8,W-2*pad+16,itemH-16,16); ctx.fill();
@@ -768,6 +792,7 @@ async function drawLongPoster(items, pageNo, totalPage, order, totalCount){
   ctx.fillStyle='#5B4BC4';ctx.fillRect(0,0,W,headerH);
   ctx.fillStyle='#fff';ctx.font='bold 36px sans-serif';ctx.fillText(SITE.shopName||'墨鱼铺子',pad,62);
   ctx.font='22px sans-serif';ctx.fillText(`我想要的这些（第${pageNo}/${totalPage}张）`,pad,104);
+  drawChannelBadge(ctx,W-pad,64,18); // 右上角来源水印（仅从专属短链进入时显示）
   let y=headerH+18;
   for(const it of items){
     ctx.fillStyle='#fff';roundRect(ctx,pad-6,y-6,W-2*pad+12,itemH-12,14);ctx.fill();
